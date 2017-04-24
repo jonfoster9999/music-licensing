@@ -1,0 +1,3 @@
+class MusicImportersController < ApplicationController
+
+end
