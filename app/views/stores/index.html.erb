@@ -1,7 +1,28 @@
 <ul>
 <% @songs.each do |song| %>
-<li><%= song.title %> - <%= song.artist_name %></li>
-
-
+<li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <%= song.artist_name %> <%= image_tag("play.jpg", size: "10", class: "playButton") %></li>
 <% end %>
 </ul>
+
+<div id="songView">
+<h3>Now Playing:</h3> 
+<p id="songPlaying"></p>
+	
+</div>
+
+
+
+<script>
+
+
+$(function(){
+	$('.playButton').on('click', function(e){
+		var song = $(this).parent().find(".title").html();
+		$('#songPlaying').html("").append(song);
+
+	})
+})
+
+
+
+</script>

@@ -1,3 +1,9 @@
 ul {
 	list-style: none;
+	float: left;
+}
+
+#songView {
+	float: right;
+	margin-right: 120px;
 }
