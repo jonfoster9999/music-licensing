@@ -3,6 +3,8 @@
 </div>
 
 <div id="waveform"></div>
+<%= will_paginate @songs, :class => "digg_pagination" %>
+
 <ul>
 <% @songs.each do |song| %>
 <li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %><%= link_to "License Song", song, :class => "license__link" %></li>
@@ -73,7 +75,7 @@ var wavesurfer = WaveSurfer.create({
 		$.get(url, function(data){
 
 			//build and show licensing overlay
-			
+
 			console.log(data.title)
 		})
 	})
