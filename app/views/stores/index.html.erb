@@ -1,8 +1,10 @@
 <ul>
 <% @songs.each do |song| %>
-<li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <%= song.artist_name %> <%= image_tag("play.jpg", size: "10", class: "playButton") %></li>
+<li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %></li>
 <% end %>
 </ul>
+
+<audio preload="auto" id="player"></audio>
 
 <div id="songView">
 <h3>Now Playing:</h3> 
@@ -10,15 +12,32 @@
 	
 </div>
 
-
-
 <script>
 
 
 $(function(){
+
+	// var testElement = new Audio();
+	// testElement.id = "player"
+	// $('body').append(testElement)
+	// console.log(testElement)
+	var currentSong = ""
+
 	$('.playButton').on('click', function(e){
 		var song = $(this).parent().find(".title").html();
+		var artist = $(this).parent().find(".artist").html();
 		$('#songPlaying').html("").append(song);
+		var url = "assets/" + artist + " - " + song + ".mp3"
+		var songPlayer = $('#player')[0]
+		songPlayer.pause();
+		if (url != currentSong) {
+			songPlayer.src = url
+			songPlayer.play();
+			currentSong = url;
+		} else {
+			$('#songPlaying').html("");
+			currentSong = "";
+		}
 
 	})
 })
