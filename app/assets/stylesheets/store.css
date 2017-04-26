@@ -1,9 +1,26 @@
+body{
+	width: 900px;
+	margin: auto;
+	background: white;
+}
+
+html {
+
+}
 ul {
+	margin-left: -38px;
 	list-style: none;
 	float: left;
 }
 
 #songView {
 	float: right;
-	margin-right: 120px;
+	margin-right: 10px;
+}
+
+#waveform {
+	width: 900px;
+	margin: auto;
+	overflow: hidden;
+	background: linear-gradient(to right, #1e3c72, #2a5298);
 }

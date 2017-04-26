@@ -1,11 +1,7 @@
-<div id="licensing__overlay">
-	<!-- licensing overlay -->
-</div>
-
 <div id="waveform"></div>
 <ul>
 <% @songs.each do |song| %>
-<li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %><%= link_to "License Song", song, :class => "license__link" %></li>
+<li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %></li>
 <% end %>
 </ul>
 
@@ -15,8 +11,8 @@
 <h3>Now Playing:</h3> 
 <p id="songPlaying">
 </p>
-<span><%= image_tag("play.jpg", size: "10", class: "playerButton") %></span>
-	
+<!-- <span><%= image_tag("play.jpg", size: "10", class: "playerButton") %></span>
+ -->	
 </div>
 
 
@@ -31,6 +27,17 @@ var wavesurfer = WaveSurfer.create({
     waveColor: 'lightblue',
     progressColor: 'lightgray'
 });
+
+
+console.log(wavesurfer)
+wavesurfer.on('ready', function(){
+	wavesurfer.play();
+})
+
+	// var testElement = new Audio();
+	// testElement.id = "player"
+	// $('body').append(testElement)
+	// console.log(testElement)
 	var currentSong = ""
 	var songPlayer = $('#player')[0]
 
@@ -38,44 +45,32 @@ var wavesurfer = WaveSurfer.create({
 		var song = $(this).parent().find(".title").html();
 		var artist = $(this).parent().find(".artist").html();
 		$('#songPlaying').html("").append(song);
+
 		var url = "assets/" + artist + " - " + song + ".mp3"
+		wavesurfer.load(url)
 		$('.playerButton').off();
 
 		$('.playerButton').click(function(){
-			if(wavesurfer.isPlaying()) {
-				wavesurfer.pause();
+			if(!songPlayer.paused) {
+				songPlayer.pause()
 			} else {
-				wavesurfer.play();
+				// songPlayer.play();
 			}
 		})
 
 		if (url != currentSong) {
-
 			songPlayer.src = url
-			wavesurfer.load(url)
-			wavesurfer.on('ready', function(){
-				wavesurfer.play();
-			})
+			// songPlayer.play();
+
 			currentSong = url;
 
 		} else {
-			if(wavesurfer.isPlaying()) {
-				wavesurfer.pause();
+			if(!songPlayer.paused) {
+				songPlayer.pause();
 			} else {
-				wavesurfer.play();
+				// songPlayer.play();
 			}
 		}
-	})
-
-	$('.license__link').click(function(e) {
-		e.preventDefault();
-		var url = e.target + ".json"
-		$.get(url, function(data){
-
-			//build and show licensing overlay
-			
-			console.log(data.title)
-		})
 	})
 })
 
