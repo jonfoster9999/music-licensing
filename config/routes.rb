@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'stores#index'
+  devise_for :users, :controllers => { :registrations => 'memberships', :sessions => 'sessions' }
   resources :music_importers
   resources :artists
   resources :songs

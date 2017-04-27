@@ -2,6 +2,36 @@ body{
 	width: 900px;
 	margin: auto;
 	background: white;
+
+}
+
+#user_name {
+  float: right;
+}
+
+#waveform {
+	z-index: -1;
+}
+
+#overlay {
+	background-color: rgba(0, 0, 0, .8);
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: none;
+}
+
+#licenseInfo {
+	position: absolute;
+	top: 200px;
+	background: white;
+	left: 200px;
+	right: 200px;
+	bottom: 100px;
+	text-align: center;
+	z-index: 100;
 }
 
 html {

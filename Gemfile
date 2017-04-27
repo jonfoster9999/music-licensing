@@ -9,6 +9,8 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'active_model_serializers'
+
+gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

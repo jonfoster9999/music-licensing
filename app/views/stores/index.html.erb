@@ -1,7 +1,11 @@
-<div id="licensing__overlay">
-	<!-- licensing overlay -->
-</div>
-
+<% if !user_signed_in? %>
+	<a href="#" id="sign_up">Sign Up</a>
+	<a href="#" id="sign_in">Sign In</a>
+<% else %>
+	<span id="user_name">
+		<%= current_user.email %><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
+	</span>
+<% end %>
 <div id="waveform"></div>
 <%= will_paginate @songs, :class => "digg_pagination" %>
 
@@ -21,7 +25,11 @@
 	
 </div>
 
-
+<div id="overlay">
+	<!-- licensing overlay -->
+	<div id="licenseInfo">
+	</div>
+</div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js"></script>
 <script>
@@ -71,13 +79,35 @@ var wavesurfer = WaveSurfer.create({
 
 	$('.license__link').click(function(e) {
 		e.preventDefault();
+
 		var url = e.target + ".json"
 		$.get(url, function(data){
+			var html = "<h1>Licensing info for " + data.title + "</h1>"
 
-			//build and show licensing overlay
-
-			console.log(data.title)
+			$('#licenseInfo').html("").append(html)
+			$('#overlay').show();
+			$('#overlay').click(function(){
+				$(this).hide();
+			})
 		})
+	})
+
+	$('#sign_up').click(function(e){
+		e.preventDefault();
+		$.get("/users/sign_up")
+			.then(function(data) {
+				$('#licenseInfo').html("").append(data);
+				$('#overlay').show();
+			})
+	})
+
+	$('#sign_in').click(function(e) {
+		e.preventDefault();
+		$.get("/users/sign_in")
+			.then(function(data) {
+				$('#licenseInfo').html("").append(data);
+				$('#overlay').show();
+			})
 	})
 })
 
