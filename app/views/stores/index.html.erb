@@ -1,3 +1,9 @@
+<% if @flag == true %>
+	<p class="flag" data-info="true"></p>
+<% else %>
+	<p class="flag" data-info="false"></p>
+<% end %>
+
 <% if !user_signed_in? %>
 	<a href="#" id="sign_up">Sign Up</a>
 	<a href="#" id="sign_in">Sign In</a>
@@ -109,6 +115,14 @@ var wavesurfer = WaveSurfer.create({
 				$('#overlay').show();
 			})
 	})
+
+	if ($('.flag').data("info") == true) {
+		$.get("/users/sign_in")
+			.then(function(data) {
+				$('#licenseInfo').html("").append(data);
+				$('#overlay').show();
+			})
+	}
 })
 
 
