@@ -5,7 +5,8 @@ class Song < ApplicationRecord
 	  available_filters: [
 	  	:search_query,
 	  	:sorted_by,
-	    :with_artist_id
+	    :with_artist_id,
+	    :with_any_tag_ids
 	  ]
 	)
 
@@ -19,7 +20,23 @@ class Song < ApplicationRecord
 	}
 
 	scope :with_artist_id, lambda { |artist_id|
-		where("songs.artist_id = '?'", artist_id)
+		if artist_id != "Any"
+			where("songs.artist_id = '?'", artist_id)
+		end
+	}
+
+	scope :with_any_tag_ids, lambda { |tag_ids|
+		if tag_ids != "Any"
+			songs_tags = SongsTag.arel_table
+
+			songs = Song.arel_table
+			where(
+				SongsTag \
+					.where(songs_tags[:song_id].eq(songs[:id])) \
+					.where(songs_tags[:tag_id].in([*tag_ids].map(&:to_i))) \
+					.exists
+				)
+		end
 	}
 
 

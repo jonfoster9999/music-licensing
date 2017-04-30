@@ -26,11 +26,18 @@
 
      <!-- this is the problem i bet -->
 <select id="artist__select" name="filterrific[with_artist_id]">
-<%= options_from_collection_for_select(Artist.all, :id, :name, @songs.first.artist.id) %>
+
+<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 </select>
 
+
+	Tags
+<select id="tag__select" name="filterrific[with_any_tag_ids]">
+<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>
+</div>
     <!-- -->
-  </div>
+
 
   <div>
     <%= link_to(
@@ -81,8 +88,6 @@
 
 
 $(function(){
-
-
 	$('#sign_up').click(function(e){
 
 		e.preventDefault();
@@ -92,7 +97,6 @@ $(function(){
 				$('#overlay').show();
 			})
 	})
-
 	$('#sign_in').click(function(e) {
 		e.preventDefault();
 		$.get("/users/sign_in")
@@ -108,12 +112,7 @@ $(function(){
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
 			})
-	}
-
-	$('#artist__select').on('change', function() {
-		$("#filterriffic_filter").submit();
-	})
-	
+	}	
 })
 
 
