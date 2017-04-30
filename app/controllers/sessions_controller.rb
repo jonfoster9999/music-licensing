@@ -1,7 +1,7 @@
 class SessionsController < Devise::SessionsController
 	def new
 		@user = User.new
-		render :new, :layout => false
+		render :new, :layout => 'messages'
 	end
 	  
 	def create
