@@ -1,6 +1,7 @@
 <div id="filterrific_results">
 
-<div id="waveform"></div>
+
+<%= will_paginate songs, :class => "apple_pagination" %>
 <ul>
 <% songs.each do |song| %>
 <li class="listItem <%= song.title %>"><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %><%= link_to "License Song", song, :class => "license__link" %></li>
@@ -10,64 +11,5 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js"></script>
 <script>
-var wavesurfer = WaveSurfer.create({
-    container: '#waveform',
-    waveColor: 'lightblue',
-    progressColor: 'lightgray'
-});
-	var currentSong = ""
 
-
-	$('.playButton').on('click', function(e){
-		
-		var song = $(this).parent().find(".title").html();
-		var artist = $(this).parent().find(".artist").html();
-		var songPlayer = $('#player')[0]
-		$('#songPlaying').html("").append(song);
-		var url = "assets/" + artist + " - " + song + ".mp3"
-		$('.playerButton').off();
-
-		$('.playerButton').click(function(){
-			if(wavesurfer.isPlaying()) {
-				wavesurfer.pause();
-			} else {
-				wavesurfer.play();
-			}
-		})
-
-		if (url != currentSong) {
-
-			songPlayer.src = url
-			wavesurfer.load(url)
-
-			wavesurfer.on('ready', function(){
-					wavesurfer.play();
-			})
-			currentSong = url;
-
-		} else {
-			if(wavesurfer.isPlaying()) {
-				wavesurfer.pause();
-			} else {
-				wavesurfer.play();
-			}
-		}
-	})
-
-
-	$('.license__link').click(function(e) {
-		e.preventDefault();
-
-		var url = e.target + ".json"
-		$.get(url, function(data){
-			var html = "<h1>Licensing info for " + data.title + "</h1>"
-			$('#licenseInfo').html("").append(html)
-			$('#licenseInfo').append("<button id='huh'>Dismiss</button")
-			$('#overlay').show();
-			$('#huh').click(function(e){
-				$('#overlay').hide();
-			})
-
-		})
-	})
 </script>

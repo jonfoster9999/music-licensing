@@ -53,10 +53,11 @@ ul {
 }
 
 #waveform {
-	width: 900px;
+	width: 500px;
+  border-radius: 5px;
 	margin: auto;
 	overflow: hidden;
-	background: linear-gradient(to right, #1e3c72, #2a5298);
+/*	background: linear-gradient(to right, #1e3c72, #2a5298);*/
 }
 
 

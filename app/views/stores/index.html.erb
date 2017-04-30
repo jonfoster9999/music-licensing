@@ -46,7 +46,7 @@
     ) %>
   </div>
   <%# add an automated spinner to your form when the list is refreshed %>
-
+<div id="waveform"></div>
 <% end %>
 
 <!-- <form id="filterriffic_filter" class="new_filterrific" accept-charset="UTF-8" action="/store" method="get">
@@ -61,12 +61,12 @@
 
 <br>
 
-<%= will_paginate @songs, :class => "digg_pagination" %>
 
+<div id="something">
 <%= render(
   partial: 'stores/list',
   locals: { songs: @songs }) %>
-
+</div>
 
 
 <div id="songView">
@@ -88,6 +88,80 @@
 
 
 $(function(){
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'black',
+    progressColor: 'lightgray'
+});
+
+	var currentSong = ""
+
+	// can these go in the index.html.erb script? but fire off when each ajax
+	// call is made over in index.js.erb
+
+	function addHandlers() {
+
+		$('.playButton').on('click', function(e){
+
+			var song = $(this).parent().find(".title").html();
+			var artist = $(this).parent().find(".artist").html();
+			var songPlayer = $('#player')[0]
+			$('#songPlaying').html("").append(song);
+			var url = "assets/" + artist + " - " + song + ".mp3"
+			$('.playerButton').off();
+
+			$('.playerButton').click(function(){
+				if(wavesurfer.isPlaying()) {
+					wavesurfer.pause();
+				} else {
+					wavesurfer.play();
+				}
+			})
+
+			if (url != currentSong) {
+
+				songPlayer.src = url
+				wavesurfer.load(url)
+
+				wavesurfer.on('ready', function(){
+						wavesurfer.play();
+				})
+				currentSong = url;
+
+			} else {
+				if(wavesurfer.isPlaying()) {
+					wavesurfer.pause();
+				} else {
+					wavesurfer.play();
+				}
+			}
+		})
+
+
+		$('.license__link').click(function(e) {
+			e.preventDefault();
+
+			var url = e.target + ".json"
+			$.get(url, function(data){
+				var html = "<h1>Licensing info for " + data.title + "</h1>"
+				$('#licenseInfo').html("").append(html)
+				$('#licenseInfo').append("<button id='huh'>Dismiss</button")
+				$('#overlay').show();
+				$('#huh').click(function(e){
+					$('#overlay').hide();
+				})
+
+			})
+		})
+
+	}
+
+	addHandlers();
+
+	$('form').on("change", function(){
+		setTimeout(addHandlers, 1000);
+	})
+
 	$('#sign_up').click(function(e){
 
 		e.preventDefault();
