@@ -9,6 +9,7 @@
 	<a href="#" id="sign_in">Sign In</a>
 <% else %>
 	<span id="user_name">
+		<%= link_to "Dashboard", admin_dashboard_path %>
 		<%= current_user.email %><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
 	</span>
 <% end %>

@@ -1,0 +1,5 @@
+<h1>Song Editor: </h1>
+
+<% @songs.each do |song| %>
+	<%= link_to song.title, admin_song_path(song) %> - <%= song.artist.name %><br>
+<% end %>

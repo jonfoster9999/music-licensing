@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
 
+
 	filterrific(
 	  default_filter_params: { :sorted_by => 'songs.id' },
 	  available_filters: [
@@ -15,6 +16,8 @@ class Song < ApplicationRecord
 	has_many :songs_tags
 	has_many :tags, :through => :songs_tags
 
+
+	accepts_nested_attributes_for :tags
 	scope :sorted_by, lambda {|query|
 		order(query)
 	}
@@ -39,6 +42,12 @@ class Song < ApplicationRecord
 		end
 	}
 
+	def tags_attributes=(attributes)
+		if !attributes["0"]["name"].empty?
+			tag = Tag.create(:name => attributes["0"]["name"])
+			self.songs_tags.create(:tag_id => tag.id)
+		end
+	end
 
 	def artist_name
 		self.artist.name

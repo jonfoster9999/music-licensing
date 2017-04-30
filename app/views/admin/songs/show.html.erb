@@ -1,0 +1,8 @@
+Title: <%= @song.title %><br>
+Tags: 
+
+	<% @song.tags.each do |tag| %>
+<%= tag.name %>
+	<% end %>
+	<br>
+<%= link_to "Edit", edit_admin_song_path(@song) %>
