@@ -1,0 +1,12 @@
+<ul>
+<% @license.details.each do |detail| %>
+	<li><%= detail[:name] %>
+	<br>
+	<select class="select__details">
+	<option>Select...</option>
+	<% detail[:options].each do |option| %>
+		<option data-price="<%= option[:price]%>"><%= option[:name] %></option>
+	<% end %>
+	</select></li>
+<% end %>
+</ul>

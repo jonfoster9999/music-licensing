@@ -1,0 +1,3 @@
+<select id="license__types">
+<%= options_for_select @licenses.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>

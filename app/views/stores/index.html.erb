@@ -141,16 +141,54 @@ var wavesurfer = WaveSurfer.create({
 
 		$('.license__link').click(function(e) {
 			e.preventDefault();
-
+			var html = ""
 			var url = e.target + ".json"
 			$.get(url, function(data){
-				var html = "<h1>Licensing info for " + data.title + "</h1>"
-				$('#licenseInfo').html("").append(html)
-				$('#licenseInfo').append("<button id='huh'>Dismiss</button")
-				$('#overlay').show();
-				$('#huh').click(function(e){
-					$('#overlay').hide();
+				html += "<h1>Licensing info for " + data.title + "</h1>"
+				$.get("/licenses/types", function(response) {
+					html += response
+				}).then(function(){
+					html += "<div id='licenseInfoDetails'></div><br>"
+					html += "<div id='licenseInfoPrice'></div><br>"
+					html += "<button id='dismiss'>Dismiss</button"
+					$('#licenseInfo').html("").append(html)
+					
+					$('#dismiss').click(function(e){
+						$('#overlay').hide();
+					})
+
+					$('#license__types').on('change', updateLicenseView)
 				})
+				
+				$('#overlay').show();
+
+
+			})
+		})
+
+	}
+
+	function updateLicenseView() {
+		var id = ($("#license__types").val())
+		$.get('/licenses/' + id + "/details", function(data) {
+			$('#licenseInfoDetails').html("").append(data)
+		}).then(function(){
+			$(".select__details").on("change", function(){
+				var total = 0;
+				var array = []
+				$.each($(".select__details"), function(index, value) {
+					array.push($(this).val())
+					var amount = $(this).find(":selected")[0].dataset.price
+					if (amount != undefined) {
+						total += Number(amount)
+					}
+				})
+				if (array.indexOf("Select...") < 0) {
+					$('#licenseInfoPrice').html("").append("<p>Accept calculated total of $" + total)
+				} else {
+					$('#licenseInfoPrice').html("")
+				}
+				// console.log($(this).find(":selected")[0].dataset.price)
 
 			})
 		})
