@@ -6,13 +6,18 @@ class SessionsController < Devise::SessionsController
 	  
 	def create
 		@user = User.find_for_authentication(:email => params[:user][:email])
-		if @user.valid_password?(params[:user][:password])
+		if @user && @user.valid_password?(params[:user][:password])
 			sign_in(@user)
 			redirect_to root_path
 		else
 			flash[:notice] = "Invalid Data"
 			@songs = Song.all.paginate(:page => params[:page], per_page: 20)
 			@flag = true
+ @filterrific = initialize_filterrific(
+		    Song,
+		    params[:filterrific]
+		  ) or return
+		  @songs = @filterrific.find.page(params[:page]).paginate(:page => params[:page], per_page: 10)
 			render :"stores/index"
 		end
 	    # self.resource = warden.authenticate!(auth_options)
