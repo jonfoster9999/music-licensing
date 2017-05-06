@@ -23,9 +23,14 @@
 
 <%= form_for_filterrific @filterrific do |f| %>
   <div>
-    Artist
 
+Catalog
      <!-- this is the problem i bet -->
+<select id="catalog__select" name="filterrific[with_catalog_id]">
+
+<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>
+    Artist
 <select id="artist__select" name="filterrific[with_artist_id]">
 
 <%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>

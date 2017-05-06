@@ -2,16 +2,19 @@
 Licensing software
 
 
-TODO: filterrific
-	  click handlers on overlay
-	  registration overlay
+TODO: 
+
+Genres and tags are duplicating. only create if they don't exist
+
+allow to create new catalog from edit page? or maybe just from a catalog resource  
 
 
+start thinking about how the license submission process is going to happen,
 
-	  pagination is off
-	 <!--  move overlay script  -->
+handle uploads for contract 
 
-	 good work. I believe I'm going to have to define a method on each license to calculate the totals via ajax.
+
+style
 
 
 

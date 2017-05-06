@@ -7,6 +7,7 @@ class Song < ApplicationRecord
 	  	:search_query,
 	  	:sorted_by,
 	    :with_artist_id,
+	    :with_catalog_id,
 	    :with_any_tag_ids,
 	    :with_any_genre_ids 
 	  ]
@@ -14,7 +15,7 @@ class Song < ApplicationRecord
 
 
 	belongs_to :artist
-
+	belongs_to :catalog
 
 	has_many :songs_tags
 	has_many :tags, :through => :songs_tags
@@ -33,6 +34,11 @@ class Song < ApplicationRecord
 	scope :with_artist_id, lambda { |artist_id|
 		if artist_id != "Any"
 			where("songs.artist_id = '?'", artist_id)
+		end
+	}
+	scope :with_catalog_id, lambda { |catalog_id|
+		if catalog_id != "Any"
+			where("songs.catalog_id = '?'", catalog_id)
 		end
 	}
 
