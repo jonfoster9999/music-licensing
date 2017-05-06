@@ -2,6 +2,10 @@
 <%= f.label "Title" %>
 <%= f.text_field :title %><br>
 
+		<%= f.label "Enter A New Genre" %>
+		<input name="song[genres_attributes][0][name]" id="song_genres_attributes_0_name" type="text">		</br>
+<%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %><br>
+		
 		<%= f.label "Enter A New Tag" %>
 		<input name="song[tags_attributes][0][name]" id="song_tags_attributes_0_name" type="text">		</br>
 <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br>

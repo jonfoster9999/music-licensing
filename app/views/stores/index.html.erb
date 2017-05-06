@@ -31,6 +31,10 @@
 <%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 </select>
 
+	Genres
+<select id="genre__select" name="filterrific[with_any_genre_ids]">
+<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>
 
 	Tags
 <select id="tag__select" name="filterrific[with_any_tag_ids]">

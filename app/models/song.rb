@@ -7,17 +7,25 @@ class Song < ApplicationRecord
 	  	:search_query,
 	  	:sorted_by,
 	    :with_artist_id,
-	    :with_any_tag_ids
+	    :with_any_tag_ids,
+	    :with_any_genre_ids 
 	  ]
 	)
 
 
 	belongs_to :artist
+
+
 	has_many :songs_tags
 	has_many :tags, :through => :songs_tags
+	
+	has_many :songs_genres 
+	has_many :genres, :through => :songs_genres 
 
 
 	accepts_nested_attributes_for :tags
+	accepts_nested_attributes_for :genres
+
 	scope :sorted_by, lambda {|query|
 		order(query)
 	}
@@ -41,11 +49,31 @@ class Song < ApplicationRecord
 				)
 		end
 	}
+	scope :with_any_genre_ids, lambda { |genre_ids|
+		if genre_ids != "Any"
+			songs_genres = SongsGenre.arel_table
+
+			songs = Song.arel_table
+			where(
+				SongsGenre \
+					.where(songs_genres[:song_id].eq(songs[:id])) \
+					.where(songs_genres[:genre_id].in([*genre_ids].map(&:to_i))) \
+					.exists
+				)
+		end
+	}
 
 	def tags_attributes=(attributes)
 		if !attributes["0"]["name"].empty?
 			tag = Tag.create(:name => attributes["0"]["name"])
 			self.songs_tags.create(:tag_id => tag.id)
+		end
+	end
+
+	def genres_attributes=(attributes)
+		if !attributes["0"]["name"].empty?
+			genre = Genre.create(:name => attributes["0"]["name"])
+			self.songs_genres.create(:genre_id => genre.id)
 		end
 	end
 
