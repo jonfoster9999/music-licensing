@@ -16,5 +16,7 @@ handle uploads for contract
 
 style
 
+make admin routes only available for admin roles.
+
 
 

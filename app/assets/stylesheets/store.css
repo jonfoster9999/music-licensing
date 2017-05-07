@@ -9,17 +9,13 @@ body{
 }
 
 .numberlist{
+  width:450px;
+}
 
-      width:450px;
-
-   
-
-  }
-
-  .numberlist li {
-    display: block;
-    line-height: 10px;
-  }
+.numberlist li {
+  display: block;
+  line-height: 10px;
+}
 
   .numberlist ol{
                   

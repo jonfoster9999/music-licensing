@@ -1,14 +1,31 @@
+<%= stylesheet_link_tag "song" %>
+
+
 <%= link_to "Home", "/store" %><br>
 Title: <%= @song.title %><br>
 <br>
-Genres: 
+<div class="song__tag__group">
+<p>Genres:</p> 
+	<ul>
 	<% @song.genres.each do |genre| %>
-<%= genre.name %>
-	<% end %><br>
-Tags: 
-
-	<% @song.tags.each do |tag| %>
-<%= tag.name %>
+		<li><%= genre.name %></li>
 	<% end %>
+	</ul>
+</div>
+
+<br>
+
+<div class="song__tag__group">
+	<p>Tags:</p>
+	<ul>
+		<% @song.tags.each do |tag| %>
+			<li><%= tag.name %></li>
+		<% end %>
+	</ul>
+</div>
+
+<% if @song.catalog %>
+Catalog: <%= @song.catalog.name %>
+<% end %>
 	<br>
 <%= link_to "Edit", edit_admin_song_path(@song) %>

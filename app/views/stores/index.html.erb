@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'store' %>
 <% if @flag == true %>
 	<p class="flag" data-info="true"></p>
 <% else %>
@@ -58,16 +59,6 @@ Catalog
   <%# add an automated spinner to your form when the list is refreshed %>
 <div id="waveform"></div>
 <% end %>
-
-<!-- <form id="filterriffic_filter" class="new_filterrific" accept-charset="UTF-8" action="/store" method="get">
-<label for="filterrific[with_artist_id]">Search By Tag:</label>
-<select id="artist__select" name="filterrific[with_artist_id]">
-<%= options_from_collection_for_select(Artist.all, :id, :name, @songs.first.artist.id) %>
-</select>
-</form> -->
-<!-- <select id="artist__select" name="filterrific[with_artist_id">
-<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "") %>
-</select> -->
 
 <br>
 
