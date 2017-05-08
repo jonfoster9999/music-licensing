@@ -14,7 +14,9 @@
         
         <select name="song[catalog_id]" %>
 			 <%= options_from_collection_for_select(Catalog.all, :id, :name) %>
-        </select>
+        </select><br>
+		Create a new catalog:
+        <input name="song[catalog_name]" id="song_catalog_name" type="text">		</br>
 
 <%= f.submit %>
 <% end %>

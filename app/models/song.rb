@@ -83,6 +83,14 @@ class Song < ApplicationRecord
 		end
 	end
 
+	def catalog_name=(attributes)
+		if !attributes.blank?
+			catalog = Catalog.find_or_create_by(:name => attributes)
+			self.catalog = catalog
+			self.save 
+		end
+	end
+
 	def artist_name
 		self.artist.name
 	end

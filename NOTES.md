@@ -4,7 +4,7 @@ Licensing software
 
 TODO: 
 
-Genres and tags are duplicating. only create if they don't exist
+<!-- Genres and tags are duplicating. only create if they don't exist -->
 
 allow to create new catalog from edit page? or maybe just from a catalog resource  
 
