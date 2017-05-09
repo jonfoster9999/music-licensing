@@ -72,14 +72,14 @@ class Song < ApplicationRecord
 	def tags_attributes=(attributes)
 		if !attributes["0"]["name"].empty?
 			tag = Tag.find_or_create_by(:name => attributes["0"]["name"])
-			self.songs_tags.create(:tag_id => tag.id)
+			self.songs_tags.create(:tag_id => tag.id) if !self.tags.include?(tag)
 		end
 	end
 
 	def genres_attributes=(attributes)
 		if !attributes["0"]["name"].empty?
 			genre = Genre.find_or_create_by(:name => attributes["0"]["name"]) 
-			self.songs_genres.create(:genre_id => genre.id)
+			self.songs_genres.create(:genre_id => genre.id) if !self.genres.include?(genre)
 		end
 	end
 
