@@ -8,14 +8,16 @@ class Song < ApplicationRecord
 	  	:sorted_by,
 	    :with_artist_id,
 	    :with_catalog_id,
-	    :with_any_tag_ids,
+	    :with_any_tag_ids_1,
+	    :with_any_tag_ids_2,
+	    :with_any_tag_ids_3,
 	    :with_any_genre_ids 
 	  ]
 	)
 
 
 	belongs_to :artist
-	belongs_to :catalog
+	belongs_to :catalog, :required => false
 
 	has_many :songs_tags
 	has_many :tags, :through => :songs_tags
@@ -42,7 +44,33 @@ class Song < ApplicationRecord
 		end
 	}
 
-	scope :with_any_tag_ids, lambda { |tag_ids|
+	scope :with_any_tag_ids_1, lambda { |tag_ids|
+		if tag_ids != "Any"
+			songs_tags = SongsTag.arel_table
+
+			songs = Song.arel_table
+			where(
+				SongsTag \
+					.where(songs_tags[:song_id].eq(songs[:id])) \
+					.where(songs_tags[:tag_id].in([*tag_ids].map(&:to_i))) \
+					.exists
+				)
+		end
+	}
+	scope :with_any_tag_ids_2, lambda { |tag_ids|
+		if tag_ids != "Any"
+			songs_tags = SongsTag.arel_table
+
+			songs = Song.arel_table
+			where(
+				SongsTag \
+					.where(songs_tags[:song_id].eq(songs[:id])) \
+					.where(songs_tags[:tag_id].in([*tag_ids].map(&:to_i))) \
+					.exists
+				)
+		end
+	}
+	scope :with_any_tag_ids_3, lambda { |tag_ids|
 		if tag_ids != "Any"
 			songs_tags = SongsTag.arel_table
 

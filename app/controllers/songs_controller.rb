@@ -6,4 +6,12 @@ class SongsController < ApplicationController
 			format.json { render json: @song}
 		end
 	end
+
+	def create 
+		raise params.inspect
+	end
+
+	def index 
+		raise params.inspect 
+	end
 end

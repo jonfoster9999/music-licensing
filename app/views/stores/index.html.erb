@@ -42,10 +42,22 @@ Catalog
 <%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 </select>
 
-	Tags
-<select id="tag__select" name="filterrific[with_any_tag_ids]">
+	Tag 1
+<select id="tag__select_1" name="filterrific[with_any_tag_ids_1]">
 <%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 </select>
+
+	Tag 2
+<select id="tag__select_2" name="filterrific[with_any_tag_ids_2]">
+<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>
+
+	Tag 3
+<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
+<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+</select>
+
+
 </div>
     <!-- -->
 
