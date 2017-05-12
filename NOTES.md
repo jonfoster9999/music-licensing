@@ -24,4 +24,6 @@ change the look of the play button when playing
 
 when you create a new catalog, the select box is overwriting adding the catalog as the song's catalog
 
+--IN THE PARTIAL--
+<%= image_tag("play.jpg", size: "10", class: "playButton") %>
 

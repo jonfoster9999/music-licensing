@@ -86,7 +86,11 @@ Catalog
 <h3>Now Playing:</h3> 
 <p id="songPlaying">
 </p>
-<span><%= image_tag("play.jpg", size: "10", class: "playerButton") %></span>
+<span>
+	<div class="button">
+		<%= image_tag("play.jpg", size: "10", class: "playerButton") %>
+	</div>
+</span>
 	
 </div>
 <audio preload="auto" id="player"></audio>
@@ -115,7 +119,8 @@ var wavesurfer = WaveSurfer.create({
 	function addHandlers() {
 
 		$('.playButton').on('click', function(e){
-
+			$('.playButton').css('background-position', '0px')
+			$(this).css('background-position', '-23px')
 			var song = $(this).parent().find(".title").html();
 			var artist = $(this).parent().find(".artist").html();
 			var songPlayer = $('#player')[0]
@@ -124,7 +129,9 @@ var wavesurfer = WaveSurfer.create({
 			$('.playerButton').off();
 
 			$('.playerButton').click(function(){
+
 				if(wavesurfer.isPlaying()) {
+
 					wavesurfer.pause();
 				} else {
 					wavesurfer.play();
@@ -145,6 +152,7 @@ var wavesurfer = WaveSurfer.create({
 				if(wavesurfer.isPlaying()) {
 					wavesurfer.pause();
 				} else {
+
 					wavesurfer.play();
 				}
 			}

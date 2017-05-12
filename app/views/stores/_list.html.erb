@@ -5,7 +5,11 @@
 <div class="numberlist"
 <ol>
 <% songs.each do |song| %>
-<li class="listItem <%= song.title %>"><%= link_to "License Song", song, :class => "license__link" %><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> <%= image_tag("play.jpg", size: "10", class: "playButton") %></li>
+<li class="listItem <%= song.title %>"><%= link_to "License Song", song, :class => "license__link" %><span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span> 
+	<div class="button_experiment playButton">
+
+	</div>
+	</li>
 <% end %>
 </ol>
 </div>
