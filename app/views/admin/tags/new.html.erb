@@ -1,0 +1,12 @@
+<% if @tag.errors.any? %>
+	<% @tag.errors.full_messages.each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
+
+<h3>New Tag: </h3>
+	<%= form_for @tag, url: admin_tags_path do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.submit %>
+	<% end %>

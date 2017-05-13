@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :songs
   
   namespace :admin do
+    resources :tags
   	resources :songs
   end
 
