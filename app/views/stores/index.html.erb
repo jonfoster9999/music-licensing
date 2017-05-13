@@ -13,7 +13,7 @@
 		<%= link_to "Dashboard", admin_dashboard_path %>
 		<%= current_user.email %><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
 	</span>
-<% end %>
+<% end %><br>
 
 
 <!-- Beginning of filter form-->
@@ -23,7 +23,7 @@
 
 
 <%= form_for_filterrific @filterrific do |f| %>
-  <div>
+  <div class="store">
 
 Catalog
      <!-- this is the problem i bet -->
@@ -87,8 +87,8 @@ Catalog
 <p id="songPlaying">
 </p>
 <span>
-	<div class="button">
-		<%= image_tag("play.jpg", size: "10", class: "playerButton") %>
+	<div class="button_experiment playerButton">
+
 	</div>
 </span>
 	
@@ -119,8 +119,15 @@ var wavesurfer = WaveSurfer.create({
 	function addHandlers() {
 
 		$('.playButton').on('click', function(e){
+
+			//change play to pause
 			$('.playButton').css('background-position', '0px')
+			$('.playerButton').css('background-position', '-23px')
 			$(this).css('background-position', '-23px')
+			$('.playButton').removeClass('playing')
+			$(this).addClass('playing')
+			//
+
 			var song = $(this).parent().find(".title").html();
 			var artist = $(this).parent().find(".artist").html();
 			var songPlayer = $('#player')[0]
@@ -131,9 +138,13 @@ var wavesurfer = WaveSurfer.create({
 			$('.playerButton').click(function(){
 
 				if(wavesurfer.isPlaying()) {
-
+					$('.playButton').css('background-position', '0px')
+					$('.playerButton').css('background-position', '0px')
 					wavesurfer.pause();
 				} else {
+					// make the song that is playing go back to the pause position also
+					$('.playing').css('background-position', '-23px')
+					$('.playerButton').css('background-position', '-23px')
 					wavesurfer.play();
 				}
 			})
@@ -150,6 +161,9 @@ var wavesurfer = WaveSurfer.create({
 
 			} else {
 				if(wavesurfer.isPlaying()) {
+					$('.playerButton').css('background-position', '0px')
+					$('.playButton').css('background-position', '0px')
+
 					wavesurfer.pause();
 				} else {
 
