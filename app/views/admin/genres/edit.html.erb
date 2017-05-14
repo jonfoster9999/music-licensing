@@ -1,0 +1,12 @@
+<% if @genre.errors.any? %>
+	<% @genre.errors.full_messages.each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
+
+<h3>Edit Genre: </h3>
+<%= form_for @genre, url: admin_genre_path(@genre) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<% end %>

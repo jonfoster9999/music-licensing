@@ -4,11 +4,6 @@ Licensing software
 
 TODO: 
 
-<!-- Genres and tags are duplicating. only create if they don't exist -->
-
-<!-- allow to create new catalog from edit page? or maybe just from a catalog resource   -->
-
-
 start thinking about how the license submission process is going to happen,
 
 handle uploads for contract 
@@ -18,12 +13,18 @@ style
 
 make admin routes only available for admin roles.
 
-Make the song LI's make sense
+make pause button yellow
 
-change the look of the play button when playing 
+cover images on playback (cover model?)
 
-when you create a new catalog, the select box is overwriting adding the catalog as the song's catalog
+set static widths on filter header 
 
---IN THE PARTIAL--
-<%= image_tag("play.jpg", size: "10", class: "playButton") %>
+see if i can use a background image for the $ contract
+
+fix overlay
+
+animated "song playing" icon?
+
+height of wave form? especially playback line 
+
 

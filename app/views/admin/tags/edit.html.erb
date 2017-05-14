@@ -4,8 +4,8 @@
 	<% end %>
 <% end %>
 
-<h3>New Tag: </h3>
-<%= form_for @tag, url: admin_tags_path do |f| %>
+<h3>Edit Tag: </h3>
+<%= form_for @tag, url: admin_tag_path(@tag) do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<%= f.submit %>

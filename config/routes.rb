@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :tags
   	resources :songs
+    resources :genres
+    resources :catalogs
   end
 
   get '/admin/dashboard', to: "admin#dashboard"

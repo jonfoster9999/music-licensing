@@ -1,0 +1,12 @@
+<% if @catalog.errors.any? %>
+	<% @catalog.errors.full_messages.each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
+
+<h3>New Catalog: </h3>
+<%= form_for @catalog, url: admin_catalogs_path do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<% end %>

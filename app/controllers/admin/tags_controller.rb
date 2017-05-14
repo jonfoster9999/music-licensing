@@ -11,7 +11,11 @@ class Admin::TagsController < ApplicationController
 
 	def new
 		@tag = Tag.new
-		render :new, :layout => "tags"
+		render :new, :layout => "admin"
+	end
+
+	def edit
+		@tag = Tag.find(params[:id]) 
 	end
 
 	def create 
@@ -20,6 +24,15 @@ class Admin::TagsController < ApplicationController
 			redirect_to admin_tags_path
 		else 
 			render :new 
+		end
+	end
+
+	def update 
+		@tag = Tag.find(params[:id])
+		if @tag.update(tags_params)
+			redirect_to admin_tags_path 
+		else
+			render :edit 
 		end
 	end
 

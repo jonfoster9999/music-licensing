@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'store' %>
+
 <% if @flag == true %>
 	<p class="flag" data-info="true"></p>
 <% else %>
@@ -20,10 +21,10 @@
 
 <!--end of filter form -->
 
-
+  <div class="store">
 
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="store">
+
 
 Catalog
      <!-- this is the problem i bet -->
@@ -62,16 +63,33 @@ Catalog
     <!-- -->
 
 
-  <div>
-    <%= link_to(
-      'Reset filters',
-      reset_filterrific_url,
-    ) %>
-  </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-<div id="waveform"></div>
-<% end %>
 
+<% end %>
+  <%# add an automated spinner to your form when the list is refreshed %>
+<div class="head">
+
+	<div id="songView">
+		    <%= link_to(
+	      'Reset filters',
+	      reset_filterrific_url,
+	    :class => "reset_filters")  %>
+	<h3>Now Playing:</h3> 
+		<div class="button_experiment playerButton">
+
+		</div>
+	<span id="songPlaying">Select A Song
+	</span>
+	<span>
+
+	</span>
+		
+	</div>
+	<div id="waveform">
+		<%= image_tag 'logo_trans.png', :class => "wave__image" %>
+	</div>
+
+
+</div>
 <br>
 
 
@@ -82,17 +100,7 @@ Catalog
 </div>
 
 
-<div id="songView">
-<h3>Now Playing:</h3> 
-<p id="songPlaying">
-</p>
-<span>
-	<div class="button_experiment playerButton">
 
-	</div>
-</span>
-	
-</div>
 <audio preload="auto" id="player"></audio>
 <div id="overlay">
 	<!-- licensing overlay -->
@@ -155,6 +163,7 @@ var wavesurfer = WaveSurfer.create({
 				wavesurfer.load(url)
 
 				wavesurfer.on('ready', function(){
+						$('.wave__image').hide();
 						wavesurfer.play();
 				})
 				currentSong = url;
@@ -259,7 +268,15 @@ var wavesurfer = WaveSurfer.create({
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
 			})
-	}	
+	}
+
+	$('select').on('change', function(){
+		if ($(this).val() != "Any") {
+			$(this).css('background-color', 'powderblue')
+		} else {
+			$(this).css('background-color', 'white')
+		}
+	})	
 })
 
 

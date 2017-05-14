@@ -8,8 +8,42 @@ body{
 
 }
 
+.wave__image {
+  display: block;
+  border-radius: 5px;
+  margin: auto;
+    margin-top: 20px;
+}
+
+
+.add {
+  position: relative;
+  float: right;
+  left: -150px;
+  top: 6px;
+}
+.head {
+  height: 120px;
+}
+
 .numberlist{
-  width:450px;
+  width:100%;
+}
+
+select {
+  position: relative;
+  top: -2px;
+}
+
+.license__link {
+  margin-bottom: 0px;
+  float: right;
+}
+hr {
+  clear: both;
+  color: white;
+  background-color: white;
+
 }
 
 .store {
@@ -19,6 +53,8 @@ body{
   background: #333;
   color: white;
 }
+
+
 
 .button_experiment {
   position: relative;
@@ -31,10 +67,23 @@ body{
   background-position: 0px;
 
 }
+#songView {
+  margin-top: 10px;
+}
+
+.reset_div {
+  float: left;
+}
+.reset_filters {
+  color: #423;
+  display: inline;
+}
 
 .numberlist li {
   display: block;
-  line-height: 10px;
+  line-height: 5px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
   .numberlist ol{
@@ -49,9 +98,7 @@ body{
 
                   padding: 0;
 
-                  margin-bottom: 4em;
-
-   
+                  margin-bottom: 0em;
 
   }
 
@@ -64,7 +111,6 @@ body{
    
 
   .numberlist a{
-                  display: block;
                   position: relative;
 
                   padding: .4em .4em .4em 2em;
@@ -84,9 +130,11 @@ body{
                   -webkit-border-radius: .3em;
 
                   border-radius: .3em;
-                  margin: 8px;
+                  margin-top: 8px;
+                  margin-bottom: 0px;
 
               }
+
 
    
 
@@ -99,32 +147,32 @@ body{
               }
 
   .numberlist a:before{
-
-                  content: "II";
+                  margin-left: 2%;
+                  content: "$";
 
                   counter-increment: li;
 
                   position: absolute;
 
-                  left: -1.3em;
+                  left: -0.9em;
 
-                  top: 50%;
+                  top:75%;
 
                   margin-top: -1.3em;
 
                   background: #87ceeb;
 
-                  height: 1.8em;
+                  height: 1.1em;
 
-                  width: 1.8em;
+                  width: 1.1em;
 
-                  line-height: 2em;
+                  line-height: 1.1em;
 
                   border: .3em solid #fff;
 
                   text-align: center;
 
-                  font-weight: bold;
+                  font-weight: normal;
 
                   -moz-border-radius: 2em;
 
@@ -135,6 +183,7 @@ body{
                   color:#FFF;
 
               }
+  }
 
 #user_name {
   float: right;
@@ -179,15 +228,22 @@ ul {
 }
 
 #songView {
-	float: right;
+	float: left;
 	margin-right: 10px;
+  
 }
 
+
 #waveform {
-	width: 500px;
-  border-radius: 5px;
+	width: 760px;
+  height: 120px;
+  border-radius: 3px;
 	margin: auto;
+  margin-top: 12px;
+  float: right;
 	overflow: hidden;
+  border: 1px solid lightgray;
+  background-image: url('https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg');
 /*	background: linear-gradient(to right, #1e3c72, #2a5298);*/
 }
 
@@ -298,3 +354,4 @@ ul {
     height: 1%; }
   *:first-child + html .digg_pagination {
     overflow: hidden; }
+
