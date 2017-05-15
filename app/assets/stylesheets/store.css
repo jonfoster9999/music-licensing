@@ -15,6 +15,15 @@ body{
     margin-top: 20px;
 }
 
+h3 {
+  margin-bottom: 0px;
+}
+.stop__button {
+  position: relative;
+  top: 2px;
+  left: -2px;
+}
+
 
 .add {
   position: relative;
@@ -230,7 +239,7 @@ ul {
 #songView {
 	float: left;
 	margin-right: 10px;
-  
+
 }
 
 
@@ -240,11 +249,13 @@ ul {
   border-radius: 3px;
 	margin: auto;
   margin-top: 12px;
+  margin-right: 1px;
   float: right;
 	overflow: hidden;
   border: 1px solid lightgray;
-  background-image: url('https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg');
-/*	background: linear-gradient(to right, #1e3c72, #2a5298);*/
+/*  background-image: url('https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg');
+*//*  background-image: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/brushedmetal103.jpg'); */
+   background: linear-gradient(to right, #ddd, #dcdcdc);
 }
 
 
