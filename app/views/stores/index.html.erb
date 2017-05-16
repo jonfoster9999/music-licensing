@@ -68,7 +68,7 @@ Catalog
   <%# add an automated spinner to your form when the list is refreshed %>
 <div class="head">
 
-	<div id="songView">
+<!-- 	<div id="songView">
 		    <%= link_to(
 	      'Reset filters',
 	      reset_filterrific_url,
@@ -84,13 +84,22 @@ Catalog
 
 	</span>
 		
-	</div>
+	</div> -->
 	<div id="waveform">
 		<%= image_tag 'logo_trans.png', :class => "wave__image" %>
 	</div>
 
 
 </div>
+<div id="controls">
+<span id="songPlaying">Select A Song
+	</span>
+	<div id="buttons">
+	<div class="button_experiment now_playing_button playerButton">
+	</div>
+	<span id="stop"><%= image_tag "stop.png", :height => "17.5px", :class =>"stop__button" %></span>	
+	</div>
+	</div>
 <br>
 
 
@@ -114,6 +123,7 @@ Catalog
 
 
 $(function(){
+$('#controls').hide();
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'black',
@@ -140,7 +150,7 @@ var wavesurfer = WaveSurfer.create({
 			var song = $(this).parent().find(".title").html();
 			var artist = $(this).parent().find(".artist").html();
 			var songPlayer = $('#player')[0]
-			$('#songPlaying').html("").append(song);
+			$('#songPlaying').html("").append("Now Playing: " + song);
 			var url = "assets/" + artist + " - " + song + ".mp3"
 			$('.playerButton').off();
 
@@ -155,6 +165,7 @@ var wavesurfer = WaveSurfer.create({
 					$('.playing').css('background-position', '-23px')
 					$('.playerButton').css('background-position', '-23px')
 					$('.wave__image').hide();
+					$('#controls').slideDown();
 					wavesurfer.play();
 				}
 			})
@@ -165,6 +176,7 @@ var wavesurfer = WaveSurfer.create({
 				wavesurfer.load(url)
 
 				wavesurfer.on('ready', function(){
+						$('#controls').slideDown();
 						$('.wave__image').hide();
 						wavesurfer.play();
 				})
@@ -178,6 +190,7 @@ var wavesurfer = WaveSurfer.create({
 					wavesurfer.pause();
 				} else {
 					$('.wave__image').hide();
+					$('#controls').slideDown();
 					wavesurfer.play();
 				}
 			}
@@ -285,6 +298,7 @@ var wavesurfer = WaveSurfer.create({
 		$('.playerButton').css('background-position', '0px')
 		$('.wave__image').css("margin-bottom", "20px")
 		$('.wave__image').show();
+		$('#controls').slideUp();
 		wavesurfer.stop();
 	})	
 })
