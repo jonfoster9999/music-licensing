@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'store' %>
+<br>
 
+<br>
 <% if @flag == true %>
 	<p class="flag" data-info="true"></p>
 <% else %>
@@ -20,7 +22,7 @@
 <!-- Beginning of filter form-->
 
 <!--end of filter form -->
-
+<div id="whole_thing">
   <div class="store">
 
 <%= form_for_filterrific @filterrific do |f| %>
@@ -109,7 +111,7 @@ Catalog
   locals: { songs: @songs }) %>
 </div>
 
-
+</div>
 
 <audio preload="auto" id="player"></audio>
 <div id="overlay">

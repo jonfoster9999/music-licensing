@@ -5,11 +5,20 @@ body{
 	margin: auto;
 	background: white;
   font-family: 'Oswald', sans-serif;
+  background-image: url('http://aclefproductions.com/images2/city.jpg');
+
+}
+
+#whole_thing {
+  background: white;
+  border: 1px solid black;
+  box-shadow: 4px 4px 4px 4px black;
+  padding-bottom: -3px;
 
 }
 
 a {
-  color: black;
+  color: lightgray;
 }
 
 
@@ -21,6 +30,8 @@ a {
   color:white;
   position: relative;
   left: 3px;
+  font-size: .9em;
+  top: -2px;
 }
 .wave__image {
   display: block;
@@ -126,6 +137,9 @@ hr {
   line-height: 5px;
   margin-bottom: 0px;
   margin-top: 0px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
   .numberlist ol{
