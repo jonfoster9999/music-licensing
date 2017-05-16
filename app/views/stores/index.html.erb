@@ -112,6 +112,7 @@ Catalog
 </div>
 
 </div>
+<br><br><br>
 
 <audio preload="auto" id="player"></audio>
 <div id="overlay">
@@ -122,10 +123,11 @@ Catalog
 
 
 <script>
-
+$('#controls').hide();
 
 $(function(){
-$('#controls').hide();
+$('#spacer').hide();
+
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'black',
@@ -255,6 +257,8 @@ var wavesurfer = WaveSurfer.create({
 
 	}
 
+
+
 	addHandlers();
 
 	$('form').on("change", function(){
@@ -289,10 +293,18 @@ var wavesurfer = WaveSurfer.create({
 
 	$('select').on('change', function(){
 		if ($(this).val() != "Any") {
-			$(this).css('background-color', 'pink')
+			$(this).css('background-color', 'lightblue')
 		} else {
 			$(this).css('background-color', 'white')
 		}
+		setTimeout(function(){
+		if ($('li').length < 10) {
+			$('#spacer').show();
+		}	else {
+			$('#spacer').hide();
+		}
+	}, 150)
+		
 	})
 
 	$('#stop').click(function(){
@@ -303,6 +315,10 @@ var wavesurfer = WaveSurfer.create({
 		$('#controls').slideUp();
 		wavesurfer.stop();
 	})	
+
+	$('#song__list').change(function(){
+		alert("handler")
+	})
 })
 
 

@@ -12,8 +12,8 @@ body{
 #whole_thing {
   background: white;
   border: 1px solid black;
-  box-shadow: 4px 4px 4px 4px black;
   padding-bottom: -3px;
+  height: 610px;
 
 }
 
@@ -76,6 +76,7 @@ hr {
   clear: both;
   color: white;
   background-color: white;
+  width: 95%;
 
 }
 
@@ -116,9 +117,9 @@ hr {
 
 #controls{
   width: 100%;
-  height: 23px;
+  height: 25px;
   background: black;
-  display: hidden;
+  display: none;
 }
 #songView {
   margin-top: 10px;
@@ -274,6 +275,23 @@ html {
 
 }
 
+ol {
+  font-family: 'Oswald', sans-serif;
+}
+
+#spacer {
+background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  margin-top: -24px;
+  height: 24px;
+  margin-bottom:;
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
+  display: none;
+}
+
 .pagination {
 	float: left;
 }
@@ -295,7 +313,7 @@ ul {
   height: 120px;
   border-radius: 3px;
 	margin: auto;
-  margin-top: 12px;
+
   margin-right: 1px;
 	overflow: hidden;
 
@@ -310,7 +328,10 @@ ul {
   border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
-  margin-top: -8px;
+  margin-top: -24px;
+  margin-bottom:;
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
   cursor: default; }
   .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; }
@@ -412,4 +433,8 @@ ul {
     height: 1%; }
   *:first-child + html .digg_pagination {
     overflow: hidden; }
+
+    li {
+      font-family: 'Oswald';
+    }
 
