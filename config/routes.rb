@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'album_covers/index'
+  end
+
+  namespace :admin do
+    get 'album_covers/show'
+  end
+
   root 'stores#index'
   devise_for :users, :controllers => { :registrations => 'memberships', :sessions => 'sessions' }
   resources :music_importers
@@ -10,6 +18,7 @@ Rails.application.routes.draw do
   	resources :songs
     resources :genres
     resources :catalogs
+    resources :album_covers, :only => [:index, :show, :edit]
   end
 
   get '/admin/dashboard', to: "admin#dashboard"

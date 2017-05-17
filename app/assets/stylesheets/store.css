@@ -247,7 +247,7 @@ hr {
 
 
 #waveform {
-	z-index: -1;
+	z-index: -1000;
 }
 
 #overlay {
@@ -258,6 +258,7 @@ hr {
 	bottom: 0;
 	right: 0;
 	display: none;
+  z-index: 1000000;
 }
 
 #overlay2 {
@@ -270,11 +271,13 @@ hr {
   align-items: center;
   justify-content;
   display: none;
+  z-index: 1000000;
 }
 #overlay2 img {
   display: block;
   margin: auto;
   height: 400px;
+  
 }
 
 #licenseInfo {
