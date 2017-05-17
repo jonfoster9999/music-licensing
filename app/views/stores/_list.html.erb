@@ -11,8 +11,11 @@
 
 	</div> 
 <span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span>
-<%= link_to "License Song", song, :class => "license__link" %>
-<%= image_tag 'add4.png', :height => "13px", :class => "plus" %>
+
+<%= link_to "License", song, :class => "license__link" %>
+
+<a href='<%= "#{song.album_cover.file_name}"%>' class="cover_art"><%= image_tag "#{song.album_cover.file_name}", :height => "17px", :class => "plus" %></a>
+<%= image_tag 'add4.png', :height => "17px", :class => "plus" %>
 
 	</li>
 	<hr>

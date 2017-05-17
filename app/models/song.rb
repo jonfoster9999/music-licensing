@@ -25,6 +25,7 @@ class Song < ApplicationRecord
 	has_many :songs_genres 
 	has_many :genres, :through => :songs_genres 
 
+	belongs_to :album_cover
 
 	accepts_nested_attributes_for :tags
 	accepts_nested_attributes_for :genres
@@ -121,5 +122,10 @@ class Song < ApplicationRecord
 
 	def artist_name
 		self.artist.name
+	end
+
+	def self.artist_scope(artist_name)
+		artist = Artist.find_by(:name => artist_name)
+		self.where(:artist_id => artist.id)
 	end
 end

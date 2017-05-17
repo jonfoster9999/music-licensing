@@ -6,14 +6,13 @@ body{
 	background: white;
   font-family: 'Oswald', sans-serif;
   background-image: url('http://aclefproductions.com/images2/city.jpg');
-
 }
-
-#whole_thing {
+  #whole_thing {
   background: white;
   border: 1px solid black;
   padding-bottom: -3px;
-  height: 610px;
+  height: 635px;
+
 
 }
 
@@ -85,9 +84,9 @@ hr {
 }
 
 .plus {
-  margin-right: 6px;
+  margin-right: 8px;
   float: right;
-  margin-top: 11px;
+  margin-top: 8px;
 }
 
 .store {
@@ -96,6 +95,9 @@ hr {
   padding-left: 3px;
   background: #333;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -168,33 +170,35 @@ hr {
 
    
 
-  .numberlist a{
-                  padding: .5em .4em .5em .4em;
+  .numberlist a.license__link{
+                  padding: .4em .4em .5em .4em;
 
 
                   margin: .5em 0;
 
-                  background: #aaa;
+                  background: gray;
 
+                  color:  lightyellow;
                   color: white;
 
                   text-decoration: none;
 
-                  -moz-border-radius: .3em;
+                  -moz-border-radius: .2em;
 
-                  -webkit-border-radius: .3em;
+                  -webkit-border-radius: .2em;
 
-                  border-radius: .3em;
-                  margin-top: 7px;
+                  border-radius: .2em;
+                  margin-top: 8px;
                   margin-bottom: 0px;
+                  font-size: .8em;
 
               }
 
 
    
 
-  .numberlist a:hover{
-                  background: gray;
+  .numberlist a.license__link:hover{
+                  background: green;
               }
 
   /*.numberlist a:before{
@@ -237,8 +241,10 @@ hr {
   }*/
 
 #user_name {
-  float: right;
+  /*float: right;*/
 }
+
+
 
 #waveform {
 	z-index: -1;
@@ -246,12 +252,29 @@ hr {
 
 #overlay {
 	background-color: rgba(0, 0, 0, .8);
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	display: none;
+}
+
+#overlay2 {
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  align-items: center;
+  justify-content;
+  display: none;
+}
+#overlay2 img {
+  display: block;
+  margin: auto;
+  height: 400px;
 }
 
 #licenseInfo {
@@ -431,4 +454,10 @@ ul {
     li {
       font-family: 'Oswald';
     }
-
+#reset_link{
+  margin-top: 22px;
+  color: lightgray;
+  text-decoration: none;
+  float: right;
+  font-size: .7em;
+}

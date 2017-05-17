@@ -2,6 +2,11 @@
 <br>
 
 <br>
+<div id="reset_link">
+<%= link_to(
+	      'Reset filters',
+	      reset_filterrific_url)  %>
+</div>
 <% if @flag == true %>
 	<p class="flag" data-info="true"></p>
 <% else %>
@@ -16,12 +21,14 @@
 		<%= link_to "Dashboard", admin_dashboard_path %>
 		<%= current_user.email %><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
 	</span>
-<% end %><br>
+	<% end %>
+<br>
 
 
 <!-- Beginning of filter form-->
 
 <!--end of filter form -->
+
 <div id="whole_thing">
   	<div class="store">
 		<%= form_for_filterrific @filterrific do |f| %>
@@ -61,10 +68,7 @@
 	<div class="head">
 
 <!-- 	<div id="songView">
-		    <%= link_to(
-	      'Reset filters',
-	      reset_filterrific_url,
-	    :class => "reset_filters")  %>
+		    
 	<h3>Now Playing:</h3> 
 		<div class="button_experiment playerButton">
 
@@ -111,10 +115,15 @@
 	</div>
 </div>
 
+<div id="overlay2">
+
+</div>
+
 
 <script>
 
 $(function(){
+
 	$('#spacer').hide();
 	$('#controls').hide();
 	var wavesurfer = WaveSurfer.create({
@@ -150,7 +159,6 @@ $(function(){
 					$('.playing').css('background-position', '-23px');
 					$('.playerButton').css('background-position', '-23px');
 					$('.wave__image').hide();
-					$('#whole_thing').css('height', '635px');
 					$('#controls').slideDown();
 					wavesurfer.play();
 				}
@@ -162,7 +170,6 @@ $(function(){
 				wavesurfer.on('ready', function(){
 						$('#controls').slideDown();
 						$('.wave__image').hide();
-						$('#whole_thing').css('height', '635px');
 						wavesurfer.play();
 				})
 				currentSong = url;
@@ -174,7 +181,6 @@ $(function(){
 				} else {
 					$('.wave__image').hide();
 					$('#controls').slideDown();
-					$('#whole_thing').css('height', '635px');
 					wavesurfer.play();
 				}
 			}
@@ -271,7 +277,8 @@ $(function(){
 		} else {
 			$('#spacer').hide();
 		}
-	}, 200);
+		addCoverArtHandlers();
+	}, 300);
 		
 	});
 
@@ -287,6 +294,21 @@ $(function(){
 	$('#song__list').change(function(){
 		alert("handler");
 	});
+
+	function addCoverArtHandlers() {
+		$('.cover_art').click(function(event){
+			event.preventDefault();
+			console.log($(this).attr("href"))
+			$('#overlay2').html("").append('<img src="/assets/' + $(this).attr("href") + '">');
+			$('#overlay2').css('display', 'flex');
+			$('#overlay2').show();
+			$('#overlay2').click(function(){
+				$(this).hide();
+			})
+		})
+	}
+	addCoverArtHandlers();
+
 })
 
 
