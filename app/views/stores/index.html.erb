@@ -23,52 +23,42 @@
 
 <!--end of filter form -->
 <div id="whole_thing">
-  <div class="store">
+  	<div class="store">
+		<%= form_for_filterrific @filterrific do |f| %>
+				
+				Catalog
+			<select id="catalog__select" name="filterrific[with_catalog_id]">
+			<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+			    
+			    Artist
+			<select id="artist__select" name="filterrific[with_artist_id]">
+			<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
 
-<%= form_for_filterrific @filterrific do |f| %>
+				Genres
+			<select id="genre__select" name="filterrific[with_any_genre_ids]">
+			<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
 
+				Tag 1
+			<select id="tag__select_1" name="filterrific[with_any_tag_ids_1]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
 
-Catalog
-     <!-- this is the problem i bet -->
-<select id="catalog__select" name="filterrific[with_catalog_id]">
+				Tag 2
+			<select id="tag__select_2" name="filterrific[with_any_tag_ids_2]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
 
-<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-    Artist
-<select id="artist__select" name="filterrific[with_artist_id]">
-
-<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-
-	Genres
-<select id="genre__select" name="filterrific[with_any_genre_ids]">
-<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-
-	Tag 1
-<select id="tag__select_1" name="filterrific[with_any_tag_ids_1]">
-<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-
-	Tag 2
-<select id="tag__select_2" name="filterrific[with_any_tag_ids_2]">
-<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-
-	Tag 3
-<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
-<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
-</select>
-
-
-</div>
-    <!-- -->
-
-
-
-<% end %>
+				Tag 3
+			<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+		<% end %>
+	</div>
   <%# add an automated spinner to your form when the list is refreshed %>
-<div class="head">
+	<div class="head">
 
 <!-- 	<div id="songView">
 		    <%= link_to(
@@ -99,7 +89,7 @@ Catalog
 	<div id="buttons">
 	<div class="button_experiment now_playing_button playerButton">
 	</div>
-	<span id="stop"><%= image_tag "stop.png", :height => "17.5px", :class =>"stop__button" %></span>	
+	<span id="stop"><%= image_tag "stop.png", :height => "18px", :class =>"stop__button" %></span>	
 	</div>
 	</div>
 <br>
@@ -123,111 +113,95 @@ Catalog
 
 
 <script>
-$('#controls').hide();
 
 $(function(){
-$('#spacer').hide();
-
-var wavesurfer = WaveSurfer.create({
-    container: '#waveform',
-    waveColor: 'black',
-    progressColor: 'lightgray'
-});
+	$('#spacer').hide();
+	$('#controls').hide();
+	var wavesurfer = WaveSurfer.create({
+	    container: '#waveform',
+	    waveColor: 'black',
+	    progressColor: 'lightgray'
+	});
 
 	var currentSong = ""
 
-	// can these go in the index.html.erb script? but fire off when each ajax
-	// call is made over in index.js.erb
-
 	function addHandlers() {
-
 		$('.playButton').on('click', function(e){
-
-			//change play to pause
-			$('.playButton').css('background-position', '0px')
-			$('.playerButton').css('background-position', '-23px')
-			$(this).css('background-position', '-23px')
-			$('.playButton').removeClass('playing')
-			$(this).addClass('playing')
-			//
+			$('.playButton').css('background-position', '0px');
+			$('.playerButton').css('background-position', '-23px');
+			$(this).css('background-position', '-23px');
+			$('.playButton').removeClass('playing');
+			$(this).addClass('playing');
 
 			var song = $(this).parent().find(".title").html();
 			var artist = $(this).parent().find(".artist").html();
-			var songPlayer = $('#player')[0]
+			var songPlayer = $('#player')[0];
 			$('#songPlaying').html("").append("Now Playing: " + song);
-			var url = "assets/" + artist + " - " + song + ".mp3"
+			var url = "assets/" + artist + " - " + song + ".mp3";
 			$('.playerButton').off();
 
 			$('.playerButton').click(function(){
-
 				if(wavesurfer.isPlaying()) {
-					$('.playButton').css('background-position', '0px')
-					$('.playerButton').css('background-position', '0px')
+					$('.playButton').css('background-position', '0px');
+					$('.playerButton').css('background-position', '0px');
 					wavesurfer.pause();
 				} else {
 					// make the song that is playing go back to the pause position also
-					$('.playing').css('background-position', '-23px')
-					$('.playerButton').css('background-position', '-23px')
+					$('.playing').css('background-position', '-23px');
+					$('.playerButton').css('background-position', '-23px');
 					$('.wave__image').hide();
+					$('#whole_thing').css('height', '635px');
 					$('#controls').slideDown();
 					wavesurfer.play();
 				}
 			})
 
 			if (url != currentSong) {
-
-				songPlayer.src = url
-				wavesurfer.load(url)
-
+				songPlayer.src = url;
+				wavesurfer.load(url);
 				wavesurfer.on('ready', function(){
 						$('#controls').slideDown();
 						$('.wave__image').hide();
+						$('#whole_thing').css('height', '635px');
 						wavesurfer.play();
 				})
 				currentSong = url;
-
 			} else {
 				if(wavesurfer.isPlaying()) {
-					$('.playerButton').css('background-position', '0px')
-					$('.playButton').css('background-position', '0px')
-
+					$('.playerButton').css('background-position', '0px');
+					$('.playButton').css('background-position', '0px');
 					wavesurfer.pause();
 				} else {
 					$('.wave__image').hide();
 					$('#controls').slideDown();
+					$('#whole_thing').css('height', '635px');
 					wavesurfer.play();
 				}
 			}
-		})
+		});
 
 
 		$('.license__link').click(function(e) {
 			e.preventDefault();
-			var html = ""
-			var url = e.target + ".json"
+			var html = "";
+			var url = e.target + ".json";
 			$.get(url, function(data){
-				html += "<h1>Licensing info for " + data.title + "</h1>"
+				html += "<h1>Licensing info for " + data.title + "</h1>";
 				$.get("/licenses/types", function(response) {
-					html += response
+					html += response;
 				}).then(function(){
-					html += "<div id='licenseInfoDetails'></div><br>"
-					html += "<div id='licenseInfoPrice'></div><br>"
-					html += "<button id='dismiss'>Dismiss</button"
+					html += "<div id='licenseInfoDetails'></div><br>";
+					html += "<div id='licenseInfoPrice'></div><br>";
+					html += "<button id='dismiss'>Dismiss</button";
 					$('#licenseInfo').html("").append(html)
-					
 					$('#dismiss').click(function(e){
 						$('#overlay').hide();
-					})
-
+					});
 					$('#license__types').on('change', updateLicenseView)
-				})
-				
+				})		
 				$('#overlay').show();
-
-
 			})
 		})
-
 	}
 
 	function updateLicenseView() {
@@ -248,47 +222,41 @@ var wavesurfer = WaveSurfer.create({
 				if (array.indexOf("Select...") < 0) {
 					$('#licenseInfoPrice').html("").append("<p>Accept calculated total of $" + total)
 				} else {
-					$('#licenseInfoPrice').html("")
+					$('#licenseInfoPrice').html("");
 				}
-				// console.log($(this).find(":selected")[0].dataset.price)
-
 			})
 		})
-
 	}
-
-
 
 	addHandlers();
 
 	$('form').on("change", function(){
 		setTimeout(addHandlers, 1000);
-	})
+	});
 
 	$('#sign_up').click(function(e){
-
 		e.preventDefault();
 		$.get("/users/sign_up")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
-			})
-	})
+			});
+	});
 	$('#sign_in').click(function(e) {
 		e.preventDefault();
 		$.get("/users/sign_in")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
-			})
-	})
+			});
+	});
 
 	if ($('.flag').data("info") == true) {
 		$.get("/users/sign_in")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
-			})
+			});
 	}
 
 	$('select').on('change', function(){
@@ -300,25 +268,25 @@ var wavesurfer = WaveSurfer.create({
 		setTimeout(function(){
 		if ($('li').length < 10) {
 			$('#spacer').show();
-		}	else {
+		} else {
 			$('#spacer').hide();
 		}
-	}, 150)
+	}, 200);
 		
-	})
+	});
 
 	$('#stop').click(function(){
-		$('.playButton').css('background-position', '0px')
-		$('.playerButton').css('background-position', '0px')
-		$('.wave__image').css("margin-bottom", "20px")
+		$('.playButton').css('background-position', '0px');
+		$('.playerButton').css('background-position', '0px');
+		$('.wave__image').css("margin-bottom", "20px");
 		$('.wave__image').show();
 		$('#controls').slideUp();
 		wavesurfer.stop();
-	})	
+	});	
 
 	$('#song__list').change(function(){
-		alert("handler")
-	})
+		alert("handler");
+	});
 })
 
 
