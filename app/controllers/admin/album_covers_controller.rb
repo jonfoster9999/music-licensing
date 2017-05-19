@@ -15,6 +15,10 @@ class Admin::AlbumCoversController < ApplicationController
   def update 
     @cover = AlbumCover.find(params[:id])
     @cover.update(album_covers_params)
+    Song.find_each.select {|s| !s.album_cover }.each do |s| 
+      s.album_cover = AlbumCover.first
+      s.save
+    end
     redirect_to admin_album_covers_path
   end
 
