@@ -1,3 +1,4 @@
+<%= link_to "Home", root_path %><br>
 <% @covers.each do |cover| %>
 	<%= link_to image_tag(cover.file_name, :height => "200px"), admin_album_cover_path(cover) %>
 <% end %>

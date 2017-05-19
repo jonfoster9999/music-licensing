@@ -1,5 +1,6 @@
 class AlbumCover < ApplicationRecord
 	has_many :songs
+	accepts_nested_attributes_for :songs
 
 	def self.read_covers 
 		dir = Rails.root + "app" + "assets" + "covers"

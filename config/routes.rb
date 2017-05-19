@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   	resources :songs
     resources :genres
     resources :catalogs
-    resources :album_covers, :only => [:index, :show, :edit]
+    resources :album_covers, :only => [:index, :show, :edit, :update]
   end
 
   get '/admin/dashboard', to: "admin#dashboard"
