@@ -324,6 +324,24 @@ $(function(){
 
 		})
 	}
+
+	$('.lyrics').click(function() {
+		var songId = $(this).data("id")
+		$.get('/admin/songs/' + songId + ".json")
+			.then(function(response){
+				var $lyricsDiv = $("<div id='lyrics__div'></div>")
+				var header = "<h2>Lyrics for " + response.title + "</h2>"
+				$lyricsDiv.append(header)
+				var lyrics = response.lyrics.replace(/[\n]/gi, "<br>")
+				$lyricsDiv.append("<p>" + lyrics + "</p>")
+				$('#overlay2').html("").append($lyricsDiv)
+					$('#overlay2').css('display', 'flex');
+					$('#overlay2').show();
+					$('#overlay2').click(function(){
+						$(this).hide();
+					})
+			})
+	})
 	addCoverArtHandlers();
 
 })

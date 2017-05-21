@@ -15,7 +15,9 @@
 <%= link_to "License", song, :class => "license__link" %>
 
 <a href='<%= "#{song.album_cover.file_name}"%>' class="cover_art"><%= image_tag "#{song.album_cover.file_name}", :height => "17px", :class => "plus", :data => {:id => "#{song.id}"} %></a>
+<%= image_tag 'lyrics4.jpg', :height => "20px", :class => "plus lyrics", :data => {:id => "#{song.id}"}%>
 <%= image_tag 'add4.png', :height => "17px", :class => "plus" %>
+
 
 	</li>
 	<hr>

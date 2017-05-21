@@ -16,11 +16,25 @@ body{
 
 }
 
+.lyrics {
+  position: relative;
+  top: -2px;
+}
+
 #info__div {
   height: 400px;
   width: 650px;
   background: white;
   margin: auto;
+}
+
+#lyrics__div {
+  height: 400px;
+  width: 650px;
+  background: white;
+  margin: auto;
+  text-align: center;
+  overflow-y: scroll;
 }
 
 #info__div img {
