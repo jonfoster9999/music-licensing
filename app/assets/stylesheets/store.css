@@ -16,6 +16,26 @@ body{
 
 }
 
+#info__div {
+  height: 400px;
+  width: 650px;
+  background: white;
+  margin: auto;
+}
+
+#info__div img {
+  float: left;
+  width: 400px;
+}
+
+#info__div p {
+  margin-left: 10px;
+}
+
+#p__div {
+  width: 250px;
+  float: right;
+}
 a {
   color: lightgray;
 }

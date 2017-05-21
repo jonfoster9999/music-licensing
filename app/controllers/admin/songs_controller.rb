@@ -4,8 +4,13 @@ class Admin::SongsController < ApplicationController
 		@songs = Song.find_each
 	end
 
-	def show 
+	def show
 		@song = Song.find(params[:id])
+		respond_to do |format|
+			format.html { render :show}
+			format.json { render :json => @song}
+		end
+
 	end
 
 	def edit

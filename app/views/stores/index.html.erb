@@ -295,16 +295,33 @@ $(function(){
 		alert("handler");
 	});
 
+
 	function addCoverArtHandlers() {
 		$('.cover_art').click(function(event){
 			event.preventDefault();
-			console.log($(this).attr("href"))
-			$('#overlay2').html("").append('<img src="/assets/' + $(this).attr("href") + '">');
-			$('#overlay2').css('display', 'flex');
-			$('#overlay2').show();
-			$('#overlay2').click(function(){
-				$(this).hide();
-			})
+			
+			var songId = event.target.getAttribute("data-id")
+			var pic = '<img src="/assets/' + $(this).attr("href") + '">'
+			$.get("/admin/songs/" + songId + ".json")
+				.then(function(data){
+					var artistName = data.artist.name
+					var artistDescription = data.artist.description
+					var songTitle = data.title
+					var $infoDiv = $("<div id='info__div'></div>")
+					var $pDiv = $("<div id='p__div'></div>")
+					$infoDiv.append(pic)
+
+					$pDiv.append('<p>' + artistName +  ' - ' + songTitle + "</p><br>")
+					$pDiv.append('<p>' + artistDescription + "</p>")
+					$infoDiv.append($pDiv)
+					$('#overlay2').html("").append($infoDiv)
+					$('#overlay2').css('display', 'flex');
+					$('#overlay2').show();
+					$('#overlay2').click(function(){
+						$(this).hide();
+					})
+				})
+
 		})
 	}
 	addCoverArtHandlers();

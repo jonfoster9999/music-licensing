@@ -16,7 +16,7 @@ class Song < ApplicationRecord
 	)
 
 
-	belongs_to :artist
+	belongs_to :artist, :required => false
 	belongs_to :catalog, :required => false
 
 	has_many :songs_tags
@@ -25,7 +25,7 @@ class Song < ApplicationRecord
 	has_many :songs_genres 
 	has_many :genres, :through => :songs_genres 
 
-	belongs_to :album_cover
+	belongs_to :album_cover, :required => false
 
 	accepts_nested_attributes_for :tags
 	accepts_nested_attributes_for :genres

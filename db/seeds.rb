@@ -685,3 +685,5 @@ l.details = [
 	}
 ]
 l.save
+
+AlbumCover.create(:file_name => "aclef.jpg")
