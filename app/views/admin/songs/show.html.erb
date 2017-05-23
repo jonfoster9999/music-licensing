@@ -29,3 +29,15 @@ Catalog: <%= @song.catalog.name %>
 <% end %>
 	<br>
 <%= link_to "Edit", edit_admin_song_path(@song) %>
+<h4>Lyrics: </h4>
+
+<p id=lyrics data-id="<%= @song.id %>"></p>
+
+<script>
+var id = $('#lyrics').data("id")
+$.get("/admin/songs/" + id + ".json")
+	.then(function(response) {
+		$('#lyrics').append(response.lyrics)
+	})
+</script>
+

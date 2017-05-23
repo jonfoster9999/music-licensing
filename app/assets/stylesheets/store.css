@@ -33,8 +33,13 @@ body{
   width: 650px;
   background: white;
   margin: auto;
+
   text-align: center;
   overflow-y: scroll;
+}
+
+#lyrics__div h3 {
+  text-decoration: underline;
 }
 
 #info__div img {
@@ -47,8 +52,9 @@ body{
 }
 
 #p__div {
-  width: 250px;
+  width: 240px;
   float: right;
+  padding: 5px;
 }
 a {
   color: lightgray;
@@ -112,7 +118,7 @@ select {
 hr {
   clear: both;
   color: white;
-  background-color: white;
+  border-top: 1px solid #ddd;
   width: 95%;
 
 }
