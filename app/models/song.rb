@@ -27,6 +27,8 @@ class Song < ApplicationRecord
 
 	belongs_to :album_cover, :required => false
 
+	has_many :user_favorites 
+	has_many :favoriters, :through => :user_favorites, :source => :user
 	accepts_nested_attributes_for :tags
 	accepts_nested_attributes_for :genres
 

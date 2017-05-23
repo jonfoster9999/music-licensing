@@ -16,6 +16,19 @@ body{
 
 }
 
+.addme {
+  background: url(add_combo.png) no-repeat;
+  background-size: 34px;
+  background-position: -17px; 
+  position: relative;
+  height: 17px;
+  width: 17px;
+}
+
+.favorited {
+  background-position: 0px;
+}
+
 .lyrics {
   position: relative;
   top: -2px;

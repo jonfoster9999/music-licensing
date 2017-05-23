@@ -27,5 +27,7 @@ Rails.application.routes.draw do
 
   get '/licenses/types', to: "licenses#types"
   get '/licenses/:id/details', to: "licenses#details"
+
+  get '/admin/songs/toggle_favorites/:user_id/:song_id', to: "songs#toggle_favorites"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
