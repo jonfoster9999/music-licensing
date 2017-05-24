@@ -21,9 +21,9 @@ body{
   background-size: 34px;
   background-position: -17px; 
   position: relative;
-  height: 22px;
+  height: 17px;
   width: 17px;
-  top: -3px;
+  top: -1px;
   right: -5px;
 }
 
@@ -337,7 +337,7 @@ hr {
 }
 
 #licenseInfo {
-	position: absolute;
+/*	position: absolute;
 	top: 200px;
 	background: white;
 	left: 200px;
@@ -345,6 +345,14 @@ hr {
 	bottom: 100px;
 	text-align: center;
 	z-index: 100;
+  overflow-y: scroll;*/
+  width: 600px;
+  background: white;
+  padding-bottom: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
 }
 
 html {
@@ -520,7 +528,26 @@ ul {
   float: right;
   font-size: .7em;
 }
+#licenseInfoDetails {
+  margin-left: auto;
+}
+
+.imported__list {
+  width: 100%;
+  list-style: none;
+}
 
 select {
   width: 80px;
+}
+
+#licenseInfo select {
+  width: 160px;
+}
+
+#licenseInfo ul {
+  clear: right;
+}
+#dismiss {
+  clear: both;
 }
