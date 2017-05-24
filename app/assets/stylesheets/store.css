@@ -17,12 +17,14 @@ body{
 }
 
 .addme {
-  background: url(add_combo.png) no-repeat;
+  background: url(hearts.png) no-repeat;
   background-size: 34px;
   background-position: -17px; 
   position: relative;
-  height: 17px;
+  height: 22px;
   width: 17px;
+  top: -3px;
+  right: -5px;
 }
 
 .favorited {
@@ -32,6 +34,7 @@ body{
 .lyrics {
   position: relative;
   top: -2px;
+  right: -4px;
 }
 
 #info__div {
@@ -516,4 +519,8 @@ ul {
   text-decoration: none;
   float: right;
   font-size: .7em;
+}
+
+select {
+  width: 80px;
 }

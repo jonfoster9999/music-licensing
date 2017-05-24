@@ -11,7 +11,8 @@ class Song < ApplicationRecord
 	    :with_any_tag_ids_1,
 	    :with_any_tag_ids_2,
 	    :with_any_tag_ids_3,
-	    :with_any_genre_ids 
+	    :with_any_genre_ids,
+	    :with_any_user_ids 
 	  ]
 	)
 
@@ -95,6 +96,19 @@ class Song < ApplicationRecord
 				SongsGenre \
 					.where(songs_genres[:song_id].eq(songs[:id])) \
 					.where(songs_genres[:genre_id].in([*genre_ids].map(&:to_i))) \
+					.exists
+				)
+		end
+	}
+	scope :with_any_user_ids, lambda { |user_ids|
+		if user_ids != "Any"
+			user_favorites = UserFavorite.arel_table
+
+			songs = Song.arel_table
+			where(
+				UserFavorite \
+					.where(user_favorites[:song_id].eq(songs[:id])) \
+					.where(user_favorites[:user_id].in([*user_ids].map(&:to_i))) \
 					.exists
 				)
 		end

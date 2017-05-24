@@ -62,6 +62,14 @@
 			<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
 			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
+
+			<% if user_signed_in? %>
+					Saved
+				<select id="user__select" name="filterrific[with_any_user_ids]">
+				<option value ="Any">All</option>
+				<option value="<%= current_user.id %>">Saved</option>
+				</select>
+			<% end %>
 		<% end %>
 	</div>
   <%# add an automated spinner to your form when the list is refreshed %>
