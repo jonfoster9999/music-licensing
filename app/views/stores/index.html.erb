@@ -234,7 +234,10 @@ $(function(){
 					}
 				})
 				if (array.indexOf("Select...") < 0) {
-					$('#licenseInfoPrice').html("").append("<p>Accept calculated total of $" + total)
+					$('#licenseInfoPrice').html("").append("<button class='accept' style='background: green; color: white;'>Accept calculated total of $" + total + "</button>")
+					$('.accept').click(function(){
+						alert("You've accepted!")
+					})
 				} else {
 					$('#licenseInfoPrice').html("");
 				}
@@ -253,7 +256,11 @@ $(function(){
 		$.get("/users/sign_up")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
+				$('#licenseInfo').append("<button id='cancel'>Cancel</button>")
 				$('#overlay').show();
+				$('#cancel').click(function() {
+				$('#overlay').hide();
+				})
 			});
 	});
 
@@ -262,7 +269,11 @@ $(function(){
 		$.get("/users/sign_in")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
+				$('#licenseInfo').append("<button id='cancel'>Cancel</button>")
 				$('#overlay').show();
+				$('#cancel').click(function() {
+					$('#overlay').hide();
+				})
 			});
 	});
 
