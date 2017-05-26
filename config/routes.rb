@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :music_importers
   resources :artists
   resources :songs
+  resources :accepted_licenses, :only => [:create]
   
   namespace :admin do
     resources :tags

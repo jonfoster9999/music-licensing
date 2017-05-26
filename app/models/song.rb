@@ -30,6 +30,9 @@ class Song < ApplicationRecord
 
 	has_many :user_favorites 
 	has_many :favoriters, :through => :user_favorites, :source => :user
+
+	has_many :accepted_licenses 
+	
 	accepts_nested_attributes_for :tags
 	accepts_nested_attributes_for :genres
 

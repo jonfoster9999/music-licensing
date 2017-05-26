@@ -198,10 +198,13 @@ $(function(){
 
 		$('.license__link').click(function(e) {
 			e.preventDefault();
+
+			var song_id = $(this).data("song-id")
+			alert(song_id)
 			var html = "";
 			var url = e.target + ".json";
 			$.get(url, function(data){
-				html += "<h1>Licensing info for <span id='song__title'>" + data.title + "</span></h1>";
+				html += "<h1>Licensing info for <span id='song__title' data-song-id= '" + song_id + "'>" + data.title + "</span></h1>";
 				$.get("/licenses/types", function(response) {
 					html += response;
 				}).then(function(){
@@ -243,14 +246,22 @@ $(function(){
 						var selectedArray = $('.select__details').toArray().map(function(x) {
 							return x.value;
 						});
-						var songTitle = $('#song__title').html();
+						var song_id = $('#song__title').data("song-id");
 						var price = $('#price').html();
+						var details = categoryArray.map(function(e, i) {
+							return [e, selectedArray[i]]
+						})
 						var hash = {
-							categoryArray: categoryArray,
-							selectedArray: selectedArray,
+							details: details,
 							price: price,
-							title: songTitle
+							song_id: song_id
 						}
+						$.ajax({
+							method: "POST",
+							data: hash,
+							url: "/accepted_licenses"
+							})
+						
 						console.log(hash)
 					})
 				} else {
