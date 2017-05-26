@@ -16,6 +16,10 @@ body{
 
 }
 
+#name {
+  color: white;
+}
+
 .addme {
   background: url(hearts.png) no-repeat;
   background-size: 34px;

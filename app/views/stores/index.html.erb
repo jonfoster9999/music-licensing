@@ -3,6 +3,7 @@
 
 <br>
 <div id="reset_link">
+<%= link_to "Dashboard", admin_dashboard_path if user_signed_in? %>
 <%= link_to(
 	      'Reset filters',
 	      reset_filterrific_url)  %>
@@ -18,8 +19,8 @@
 	<a href="#" id="sign_in">Sign In</a>
 <% else %>
 	<span id="user_name">
-		<%= link_to "Dashboard", admin_dashboard_path %>
-		<%= current_user.email %><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
+		
+		<span id="name"><%= current_user.email %></span><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
 	</span>
 	<% end %>
 <br>
@@ -200,7 +201,7 @@ $(function(){
 			var html = "";
 			var url = e.target + ".json";
 			$.get(url, function(data){
-				html += "<h1>Licensing info for " + data.title + "</h1>";
+				html += "<h1>Licensing info for <span id='song__title'>" + data.title + "</span></h1>";
 				$.get("/licenses/types", function(response) {
 					html += response;
 				}).then(function(){
@@ -234,9 +235,23 @@ $(function(){
 					}
 				})
 				if (array.indexOf("Select...") < 0) {
-					$('#licenseInfoPrice').html("").append("<button class='accept' style='background: green; color: white;'>Accept calculated total of $" + total + "</button>")
+					$('#licenseInfoPrice').html("").append("<button class='accept' style='background: lightgreen;'>Accept calculated total of $<span id='price'>" + total + "</span></button>")
 					$('.accept').click(function(){
-						alert("You've accepted!")
+						var categoryArray = $('.li__details').toArray().map(function(x) {
+							return x.innerHTML.split("<br>")[0];
+						});
+						var selectedArray = $('.select__details').toArray().map(function(x) {
+							return x.value;
+						});
+						var songTitle = $('#song__title').html();
+						var price = $('#price').html();
+						var hash = {
+							categoryArray: categoryArray,
+							selectedArray: selectedArray,
+							price: price,
+							title: songTitle
+						}
+						console.log(hash)
 					})
 				} else {
 					$('#licenseInfoPrice').html("");
