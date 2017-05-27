@@ -1,0 +1,5 @@
+<%= link_to "Home", root_path %><br><br>
+
+<% @accepted_licenses.each do |license| %>
+	<%= link_to license.song.title + " - " + license.created_at.to_s, accepted_license_path(license) %><br>
+<% end %>
