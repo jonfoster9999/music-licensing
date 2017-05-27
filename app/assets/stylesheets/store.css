@@ -331,7 +331,6 @@ hr {
   bottom: 0;
   right: 0;
   align-items: center;
-  justify-content;
   display: none;
   z-index: 1000000;
 }
