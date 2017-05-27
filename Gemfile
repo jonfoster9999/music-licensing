@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'active_model_serializers'
-
+gem 'pg'
 gem 'filterrific'
 gem "rails-erd"
 gem 'devise'
@@ -45,7 +45,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'pry'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -58,6 +57,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :productions do 
-  gem 'pg'
-end
