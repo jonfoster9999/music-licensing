@@ -3,6 +3,8 @@
 
 <br>
 <div id="reset_link">
+
+<%= link_to "My Licenses", user_accepted_licenses_path(current_user.id) if user_signed_in? %>
 <%= link_to "Dashboard", admin_dashboard_path if user_signed_in? %>
 <%= link_to(
 	      'Reset filters',
@@ -198,9 +200,7 @@ $(function(){
 
 		$('.license__link').click(function(e) {
 			e.preventDefault();
-
 			var song_id = $(this).data("song-id")
-			alert(song_id)
 			var html = "";
 			var url = e.target + ".json";
 			$.get(url, function(data){
@@ -247,22 +247,25 @@ $(function(){
 							return x.value;
 						});
 						var song_id = $('#song__title').data("song-id");
-						var price = $('#price').html();
+						var price = Number($('#price').html());
 						var details = categoryArray.map(function(e, i) {
 							return [e, selectedArray[i]]
 						})
+						console.log(details)
 						var hash = {
-							details: details,
+							accepted_license: {
+							license_details: details,
 							price: price,
 							song_id: song_id
+							}
 						}
 						$.ajax({
 							method: "POST",
 							data: hash,
 							url: "/accepted_licenses"
+							}).then(function(data){
+								window.location.replace(data)
 							})
-						
-						console.log(hash)
 					})
 				} else {
 					$('#licenseInfoPrice').html("");

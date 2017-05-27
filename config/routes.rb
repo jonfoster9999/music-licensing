@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :music_importers
   resources :artists
   resources :songs
-  resources :accepted_licenses, :only => [:create]
+  resources :accepted_licenses, :only => [:create, :show]
   
   namespace :admin do
     resources :tags
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :album_covers, :only => [:index, :show, :edit, :update]
     resources :artists
   end
+
+  get '/users/:user_id/accepted_licenses', to: "accepted_licenses#index", :as => "user_accepted_licenses"
 
   get '/admin/dashboard', to: "admin#dashboard"
   get '/store', to: "stores#index"

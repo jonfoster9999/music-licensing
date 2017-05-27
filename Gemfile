@@ -14,7 +14,7 @@ gem 'filterrific'
 gem "rails-erd"
 gem 'devise'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -45,6 +45,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'pry'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -56,3 +57,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :productions do 
+  gem 'pg'
+end
