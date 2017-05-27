@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
 
 	def index
-		MusicImporter.import  
+		# MusicImporter.import  
 		  @filterrific = initialize_filterrific(
 		    Song,
 		    params[:filterrific]

@@ -10,7 +10,6 @@ class MusicImporter < ApplicationRecord
 		songs.each do |song|
 			title = song.split(" - ")[1].split(".")[0]
 			artist_name = song.split(" - ")[0]
-			puts artist_name
 			artist = Artist.find_or_create_by(:name => artist_name)
 			song = Song.find_or_create_by(:title => title) do |song|
 				song.artist = artist
