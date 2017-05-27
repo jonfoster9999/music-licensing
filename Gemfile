@@ -9,6 +9,7 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'active_model_serializers'
+gem 'wavesurfer'
 gem 'pg'
 gem 'filterrific'
 gem "rails-erd"
