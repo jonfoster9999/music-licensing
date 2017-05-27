@@ -10,7 +10,6 @@ body{
   #whole_thing {
   background: white;
   border: 1px solid black;
-  padding-bottom: -3px;
   height: 635px;
 
 
@@ -221,7 +220,7 @@ hr {
     list-style: none;
     *list-style: decimal;
     font: 15px 'trebuchet MS', 'lucida sans';
-    padding: 0;
+    padding: 0px;
     margin-bottom: 0em;
   }
 
@@ -380,7 +379,6 @@ background: #f1f1f1;
   padding: 1em;
   margin-top: -24px;
   height: 24px;
-  margin-bottom:;
   border-top: 1px solid #c9c9c9;
   border-bottom: 1px solid #c9c9c9;
   display: none;
@@ -423,7 +421,6 @@ ul {
   text-align: center;
   padding: 1em;
   margin-top: -24px;
-  margin-bottom:;
   border-top: 1px solid #c9c9c9;
   border-bottom: 1px solid #c9c9c9;
   cursor: default; }
