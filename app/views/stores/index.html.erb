@@ -157,7 +157,9 @@ $(function(){
 			var artist = $(this).parent().find(".artist").html();
 			var songPlayer = $('#player')[0];
 			$('#songPlaying').html("").append("Now Playing: " + song);
-			var url = "assets/" + artist + " - " + song + ".mp3";
+			var url = "<%= asset_path('rock.mp3')%>"
+			url = url.replace("rock.mp3", artist + " - " + song + ".mp3")
+
 			$('.playerButton').off();
 
 			$('.playerButton').click(function(){
