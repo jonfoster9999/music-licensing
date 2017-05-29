@@ -1,7 +1,7 @@
 class MusicImporter < ApplicationRecord
 
 	def self.read_songs 
-		dir = Rails.root + "lib" + "assets" + "songs"
+		dir = Rails.root + "app" + "assets" + "songs"
 		Dir.entries(dir).select { |song| song.include?("-") }
 	end
 
