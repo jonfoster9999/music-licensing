@@ -1,5 +1,4 @@
-	<div id="spacer">Showing All Results</div>
-	<%= will_paginate songs, :class => "apple_pagination" %>
+
 	<div class="numberlist">
 		<ol id="song__list">
 			<% songs.each do |song| %>
@@ -10,7 +9,6 @@
 
 				<a href='<%= "#{song.album_cover.file_name}"%>' class="cover_art"><%= image_tag "#{song.album_cover.file_name}", :height => "17px", :class => "plus", :data => {:id => "#{song.id}"} %></a>
 				<%= image_tag 'lyrics4.jpg', :height => "20px", :class => "plus lyrics", :data => {:id => "#{song.id}"}%>
-				<div class="<%= current_user && current_user.favorites.include?(song) ? 'plus addme favorited': 'plus addme ' %>" data-song="<%= song.id %>" data-user="<%= user_signed_in? ? current_user.id : 'null' %>" ></div>
 				</li>
 			<hr>
 			<% end %>
