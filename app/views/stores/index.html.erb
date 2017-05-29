@@ -161,6 +161,7 @@ $(function(){
 			
 			p1.then(function(data){
 				url = data
+				console.log(url)
 				$('.playerButton').off();
 				$('.playerButton').click(function(){
 					if(wavesurfer.isPlaying()) {
