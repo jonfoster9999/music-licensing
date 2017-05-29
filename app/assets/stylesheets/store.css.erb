@@ -21,7 +21,7 @@ body{
 }
 
 .addme {
-  background: url('hearts.png') no-repeat;
+  background: url(<%= asset_path 'hearts.png' %>) no-repeat;
   background-size: 34px;
   background-position: -17px; 
   position: relative;
@@ -169,7 +169,7 @@ hr {
   width: 22px;
   display: inline-block;
 
-  background: url('newplays.png') no-repeat;
+  background: url(<%= asset_path 'newplays.png' %>) no-repeat;
   background-size: 100px;
   background-position: 0px;
 
@@ -177,7 +177,7 @@ hr {
 
 .now_playing_button {
 
-  background: url('newplays2.png') no-repeat;
+   background: url(<%= asset_path 'newplays2.png' %>) no-repeat;
   background-size: 100px;
   background-position: 0px; 
   position: relative;
