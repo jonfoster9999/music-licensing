@@ -15,7 +15,7 @@ gem 'filterrific'
 gem "rails-erd"
 gem 'devise'
 # Use sqlite3 as the database for Active Record
-
+gem 'rails_serve_static_assets'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
