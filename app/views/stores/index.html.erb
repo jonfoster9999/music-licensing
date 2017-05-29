@@ -76,3 +76,9 @@
 	<span id="stop"><%= image_tag "stop.png", :height => "18px", :class =>"stop__button" %></span>	
 	</div>
 </div>
+
+<div id="something">
+<%= render(
+  partial: 'stores/list',
+  locals: { songs: @songs }) %>
+</div>
