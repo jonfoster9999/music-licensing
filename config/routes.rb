@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :artists
   end
 
+  get '/converter/:string', to: "converter#convert"
   get '/users/:user_id/accepted_licenses', to: "accepted_licenses#index", :as => "user_accepted_licenses"
 
   get '/admin/dashboard', to: "admin#dashboard"
