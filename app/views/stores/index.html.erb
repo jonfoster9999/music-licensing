@@ -82,13 +82,11 @@
 		    
 	<h3>Now Playing:</h3> 
 		<div class="button_experiment playerButton">
-
 		</div>
 		<span id="stop"><%= image_tag "stop.png", :height => "18px", :class=>"stop__button" %></span><br>
 	<span id="songPlaying">Select A Song
 	</span>
 	<span>
-
 	</span>
 		
 	</div> -->
@@ -132,9 +130,7 @@
 
 
 <script>
-
 $(function(){
-
 	$('#spacer').hide();
 	$('#controls').hide();
 	var wavesurfer = WaveSurfer.create({
@@ -142,9 +138,7 @@ $(function(){
 	    waveColor: 'black',
 	    progressColor: 'lightgray'
 	});
-
 	var currentSong = ""
-
 	function addHandlers() {
 		$('.playButton').on('click', function(e){
 			e.preventDefault();
@@ -168,7 +162,6 @@ $(function(){
 			p1.then(function(data){
 				url = data
 				$('.playerButton').off();
-
 				$('.playerButton').click(function(){
 					if(wavesurfer.isPlaying()) {
 						$('.playButton').css('background-position', '0px');
@@ -183,7 +176,6 @@ $(function(){
 						wavesurfer.play();
 					}
 				})
-
 				if (url != currentSong) {
 					songPlayer.src = url;
 					wavesurfer.load(url);
@@ -206,7 +198,6 @@ $(function(){
 				}
 			});
 		})
-
 		$('.license__link').click(function(e) {
 			e.preventDefault();
 			var song_id = $(this).data("song-id")
@@ -230,7 +221,6 @@ $(function(){
 			})
 		})
 	}
-
 	function updateLicenseView() {
 		var id = ($("#license__types").val())
 		$.get('/licenses/' + id + "/details", function(data) {
@@ -282,13 +272,10 @@ $(function(){
 			})
 		})
 	}
-
 	addHandlers();
-
 	$('form').on("change", function(){
 		setTimeout(addHandlers, 1000);
 	});
-
 	$('#sign_up').click(function(e){
 		e.preventDefault();
 		$.get("/users/sign_up")
@@ -301,7 +288,6 @@ $(function(){
 				})
 			});
 	});
-
 	$('#sign_in').click(function(e) {
 		e.preventDefault();
 		$.get("/users/sign_in")
@@ -314,7 +300,6 @@ $(function(){
 				})
 			});
 	});
-
 	if ($('.flag').data("info") == true) {
 		$.get("/users/sign_in")
 			.then(function(data) {
@@ -322,7 +307,6 @@ $(function(){
 				$('#overlay').show();
 			});
 	}
-
 	$('select').on('change', function(){
 		if ($(this).val() != "Any") {
 			$(this).css('background-color', 'lightblue')
@@ -340,7 +324,6 @@ $(function(){
 	}, 300);
 		
 	});
-
 	$('#stop').click(function(){
 		$('.playButton').css('background-position', '0px');
 		$('.playerButton').css('background-position', '0px');
@@ -349,12 +332,9 @@ $(function(){
 		$('#controls').slideUp();
 		wavesurfer.stop();
 	});	
-
 	$('#song__list').change(function(){
 		alert("handler");
 	});
-
-
 	function addCoverArtHandlers() {
 		$('.cover_art').click(function(event){
 			event.preventDefault();
@@ -369,7 +349,6 @@ $(function(){
 					var $infoDiv = $("<div id='info__div'></div>")
 					var $pDiv = $("<div id='p__div'></div>")
 					$infoDiv.append(pic)
-
 					$pDiv.append('<p>' + artistName +  ' - ' + songTitle + "</p><br>")
 					$pDiv.append('<p>' + artistDescription + "</p>")
 					$infoDiv.append($pDiv)
@@ -380,7 +359,6 @@ $(function(){
 						$(this).hide();
 					})
 				})
-
 		})
 	}
 	function addLyricHandlers() {
@@ -405,7 +383,4 @@ $(function(){
 	addCoverArtHandlers();
 	addLyricHandlers();
 })
-
-
-
 </script>
