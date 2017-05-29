@@ -1,4 +1,6 @@
-<h1>test</h1>
+<%= stylesheet_link_tag 'store' %>
+
+
 <div id="whole_thing">
   	<div class="store">
 		<%= form_for_filterrific @filterrific do |f| %>
@@ -64,4 +66,13 @@
 	</div>
 
 
+</div>
+<div id="controls">
+<span id="songPlaying">Select A Song
+	</span>
+	<div id="buttons">
+	<div class="button_experiment now_playing_button playerButton">
+	</div>
+	<span id="stop"><%= image_tag "stop.png", :height => "18px", :class =>"stop__button" %></span>	
+	</div>
 </div>
