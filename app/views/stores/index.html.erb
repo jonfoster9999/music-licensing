@@ -1,1 +1,67 @@
 <h1>test</h1>
+<div id="whole_thing">
+  	<div class="store">
+		<%= form_for_filterrific @filterrific do |f| %>
+				
+				Catalog
+			<select id="catalog__select" name="filterrific[with_catalog_id]">
+			<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+			    
+			    Artist
+			<select id="artist__select" name="filterrific[with_artist_id]">
+			<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+
+				Genres
+			<select id="genre__select" name="filterrific[with_any_genre_ids]">
+			<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+
+				Tag 1
+			<select id="tag__select_1" name="filterrific[with_any_tag_ids_1]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+
+				Tag 2
+			<select id="tag__select_2" name="filterrific[with_any_tag_ids_2]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+
+				Tag 3
+			<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
+			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+			</select>
+
+			<% if user_signed_in? %>
+					Saved
+				<select id="user__select" name="filterrific[with_any_user_ids]">
+				<option value ="Any">All</option>
+				<option value="<%= current_user.id %>">Saved</option>
+				</select>
+			<% end %>
+		<% end %>
+	</div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+	<div class="head">
+
+<!-- 	<div id="songView">
+		    
+	<h3>Now Playing:</h3> 
+		<div class="button_experiment playerButton">
+
+		</div>
+		<span id="stop"><%= image_tag "stop.png", :height => "18px", :class=>"stop__button" %></span><br>
+	<span id="songPlaying">Select A Song
+	</span>
+	<span>
+
+	</span>
+		
+	</div> -->
+	<div id="waveform">
+		<%= image_tag 'logo_trans.png', :class => "wave__image" %>
+	</div>
+
+
+</div>
