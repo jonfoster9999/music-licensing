@@ -2,15 +2,7 @@
 	<div class="numberlist">
 		<ol id="song__list">
 			<% songs.each do |song| %>
-				<li class="listItem <%= song.title %>">
-				<div class="button_experiment playButton"></div> 
-				<span class="title"><%= song.title %></span> - <span class="artist"><%= song.artist_name %></span>
-				<%= link_to "License", song, :class => "license__link", :data => {:song_id => song.id } %>
-
-				<a href='<%= "#{song.album_cover.file_name}"%>' class="cover_art"><%= image_tag "#{song.album_cover.file_name}", :height => "17px", :class => "plus", :data => {:id => "#{song.id}"} %></a>
-				<%= image_tag 'lyrics4.jpg', :height => "20px", :class => "plus lyrics", :data => {:id => "#{song.id}"}%>
-				</li>
-			<hr>
+				<p>ugh</p>
 			<% end %>
 		</ol>
 	</div>
