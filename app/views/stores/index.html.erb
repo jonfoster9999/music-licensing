@@ -93,7 +93,7 @@
 	<div id="waveform">
 		<%= image_tag 'logo_trans.png', :class => "wave__image" %>
 	</div>
-
+	<p class="generating"></p>
 
 </div>
 <div id="controls">
@@ -183,9 +183,14 @@ $(function(){
 					songPlayer.src = url;
 					wavesurfer.load(url);
 					wavesurfer.on('ready', function(){
+						$('.generating').text("Generating Waveform...")
 							$('#controls').slideDown();
 							$('.wave__image').hide();
 							wavesurfer.play();
+							$('#waveform').change(function(){
+								alert("yo!!")
+							})
+
 					})
 					currentSong = url;
 				} else {
@@ -328,6 +333,7 @@ $(function(){
 		
 	});
 	$('#stop').click(function(){
+		$('.generating').text("")
 		$('.playButton').css('background-position', '0px');
 		$('.playerButton').css('background-position', '0px');
 		$('.wave__image').css("margin-bottom", "20px");
