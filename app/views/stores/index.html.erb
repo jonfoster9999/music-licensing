@@ -111,7 +111,6 @@
 
 
 <div id="something">
-<h1>test</h1>
 <%= render(
   partial: 'stores/list',
   locals: { songs: @songs }) %>
@@ -148,57 +147,65 @@ $(function(){
 
 	function addHandlers() {
 		$('.playButton').on('click', function(e){
+			e.preventDefault();
 			$('.playButton').css('background-position', '0px');
 			$('.playerButton').css('background-position', '-23px');
 			$(this).css('background-position', '-23px');
 			$('.playButton').removeClass('playing');
 			$(this).addClass('playing');
-
 			var song = $(this).parent().find(".title").html();
 			var artist = $(this).parent().find(".artist").html();
 			var songPlayer = $('#player')[0];
 			$('#songPlaying').html("").append("Now Playing: " + song);
-			var url = "<%= asset_path('Jonathan Foster - Best Of Me.mp3')%>"
-			
-			$('.playerButton').off();
-
-			$('.playerButton').click(function(){
-				if(wavesurfer.isPlaying()) {
-					$('.playButton').css('background-position', '0px');
-					$('.playerButton').css('background-position', '0px');
-					wavesurfer.pause();
-				} else {
-					// make the song that is playing go back to the pause position also
-					$('.playing').css('background-position', '-23px');
-					$('.playerButton').css('background-position', '-23px');
-					$('.wave__image').hide();
-					$('#controls').slideDown();
-					wavesurfer.play();
-				}
+			var variable = artist + " - " + song + ".mp3";
+			var url = "<%= asset_path('rock.mp3') %>"
+			var p1 =  new Promise(function(resolve, reject){
+				$.get("/converter/" + variable).then(function(data){
+				resolve(data)
+				}) 
 			})
+			
+			p1.then(function(data){
+				url = data
+				$('.playerButton').off();
 
-			if (url != currentSong) {
-				songPlayer.src = url;
-				wavesurfer.load(url);
-				wavesurfer.on('ready', function(){
-						$('#controls').slideDown();
+				$('.playerButton').click(function(){
+					if(wavesurfer.isPlaying()) {
+						$('.playButton').css('background-position', '0px');
+						$('.playerButton').css('background-position', '0px');
+						wavesurfer.pause();
+					} else {
+						// make the song that is playing go back to the pause position also
+						$('.playing').css('background-position', '-23px');
+						$('.playerButton').css('background-position', '-23px');
 						$('.wave__image').hide();
+						$('#controls').slideDown();
 						wavesurfer.play();
+					}
 				})
-				currentSong = url;
-			} else {
-				if(wavesurfer.isPlaying()) {
-					$('.playerButton').css('background-position', '0px');
-					$('.playButton').css('background-position', '0px');
-					wavesurfer.pause();
-				} else {
-					$('.wave__image').hide();
-					$('#controls').slideDown();
-					wavesurfer.play();
-				}
-			}
-		});
 
+				if (url != currentSong) {
+					songPlayer.src = url;
+					wavesurfer.load(url);
+					wavesurfer.on('ready', function(){
+							$('#controls').slideDown();
+							$('.wave__image').hide();
+							wavesurfer.play();
+					})
+					currentSong = url;
+				} else {
+					if(wavesurfer.isPlaying()) {
+						$('.playerButton').css('background-position', '0px');
+						$('.playButton').css('background-position', '0px');
+						wavesurfer.pause();
+					} else {
+						$('.wave__image').hide();
+						$('#controls').slideDown();
+						wavesurfer.play();
+					}
+				}
+			});
+		})
 
 		$('.license__link').click(function(e) {
 			e.preventDefault();
