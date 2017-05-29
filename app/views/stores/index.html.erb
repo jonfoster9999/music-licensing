@@ -136,7 +136,8 @@ $(function(){
 	var wavesurfer = WaveSurfer.create({
 	    container: '#waveform',
 	    waveColor: 'black',
-	    progressColor: 'lightgray'
+	    progressColor: 'lightgray',
+	    backend: 'MediaElement'
 	});
 	var currentSong = ""
 	function addHandlers() {
