@@ -9,7 +9,6 @@ types = [
 	"Audio Projects",
 	"Composition and Sound Recordings",
 	"Corporate, Theater and Competition",
-	"Custom License",
 	"Film Sync",
 	"Games and Software",
 	"Internet Website, Flash",
