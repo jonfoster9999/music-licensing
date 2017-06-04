@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'store' %>
 <div class="header">
 	<div class="header__info">
-	<p class='left'>Jonathan Foster - 631-494-8627<br>jon.foster.ny@gmail.com</p>
+	<p class='left'>Built by Jonathan Foster |Rails|JavaScript|PostgreSQL|<br>jon.foster.ny@gmail.com - 631-494-8627</p>
 	<p class='left right'>All songs written, recorded, and produced by the programmer</p><p class='left right under' style="clear:right;"><%= image_tag "playvid", :height => "12px", :class => 'vid' %>Watch Video</p>
 	</div>
 </div>
@@ -257,8 +257,8 @@ $(function(){
 					}
 				})
 				if (array.indexOf("Select...") < 0) {
-					$('#licenseInfoPrice').html("").append("<button class='accept' style='background: lightgreen;'>Accept calculated total of $<span id='price'>" + total + "</span></button>")
-					$('.accept').click(function(){
+					$('#licenseInfoPrice').html("").append("<button class='myButton' style='background: lightgreen;'>Accept calculated total of $<span id='price'>" + total + "</span></button>")
+					$('.myButton').click(function(){
 						var categoryArray = $('.li__details').toArray().map(function(x) {
 							return x.innerHTML.split("<br>")[0];
 						});
