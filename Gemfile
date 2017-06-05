@@ -14,6 +14,7 @@ gem 'pg'
 gem 'filterrific'
 gem "rails-erd"
 gem 'devise'
+
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

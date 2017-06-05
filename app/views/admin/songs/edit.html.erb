@@ -45,8 +45,15 @@
 
 		<%= f.label "Create a new catalog" %>
         <input name="song[catalog_name]" id="song_catalog_name" type="text"></div></li>
+		
+		
 
-
+		<%= f.fields_for :artist do |artist_field| %>
+			<%= artist_field.label "Artist Description" %>
+		 	<%= artist_field.text_area :description %>
+		 	<%= artist_field.hidden_field :name %>
+		<% end %> 
+		
 		<li><div class="push-in"><%= f.label "Lyrics", :class => "lyrics-label" %></div></li>
 		<%= f.text_area :lyrics %><br><br>
 <%= f.submit %> <a href="<%= admin_song_path(@song)%>">cancel</a>

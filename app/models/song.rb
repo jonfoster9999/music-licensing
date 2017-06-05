@@ -35,6 +35,7 @@ class Song < ApplicationRecord
 	
 	accepts_nested_attributes_for :tags
 	accepts_nested_attributes_for :genres
+	accepts_nested_attributes_for :artist
 
 	scope :sorted_by, lambda {|query|
 		order(query)
@@ -137,6 +138,12 @@ class Song < ApplicationRecord
 			self.catalog = catalog
 			self.save 
 		end
+	end
+
+	def artist_attributes=(attributes)
+		artist = Artist.find_by(:name => attributes["name"])
+		artist.description = attributes["description"]
+		artist.save
 	end
 
 	def artist_name
