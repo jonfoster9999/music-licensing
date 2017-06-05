@@ -145,6 +145,7 @@
 				$('#songPlaying').html("").append("Now Playing: " + song);
 				var variable = artist + " - " + song + ".mp3";
 				var url = "<%= asset_path('rock.mp3') %>"
+				
 				var p1 =  new Promise(function(resolve, reject){
 					$.get("/converter/" + variable).then(function(data){
 						resolve(data)
