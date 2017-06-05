@@ -1,4 +1,6 @@
-<%= link_to "Home", root_path %>
+<%= stylesheet_link_tag 'texture' %>
+<%= link_to "Home", "/store" %>
+<%= link_to "Dashboard", admin_dashboard_path %>
 <ul>
 <% @artists.each do |artist| %>
  <li><%= link_to artist.name, admin_artist_path(artist) %></li>

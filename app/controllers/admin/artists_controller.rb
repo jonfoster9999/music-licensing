@@ -1,7 +1,9 @@
 class Admin::ArtistsController < ApplicationController
+	
+	layout "texture"
 
 	def index 
-		@artists = Artist.find_each
+		@artists = Artist.find_each	
 	end
 
 	def show 

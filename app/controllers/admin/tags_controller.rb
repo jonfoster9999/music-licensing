@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+
 	def index 
 		@tags = Tag.find_each
 	end 
@@ -6,12 +7,16 @@ class Admin::TagsController < ApplicationController
 	def destroy
 		@tag = Tag.find(params[:id])
 		@tag.destroy 
-		redirect_to admin_tags_path  
+		redirect_to "admin/tags" 
 	end 
 
 	def new
 		@tag = Tag.new
 		render :new, :layout => "admin"
+	end
+
+	def show 
+		redirect_to admin_tags_path
 	end
 
 	def edit

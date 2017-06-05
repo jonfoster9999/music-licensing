@@ -1,7 +1,10 @@
 class Admin::SongsController < ApplicationController
 
+	layout "texture"
+	
 	def index
 		@songs = Song.find_each
+		render :"admin/songs/index", :layout => "texture"
 	end
 
 	def show

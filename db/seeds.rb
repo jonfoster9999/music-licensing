@@ -60,13 +60,13 @@ l.details = [
 	{:name => "Number of Phonorecord Copies", :options => 
 		[
 			{:name => "1,000", :price => 100, :sign => "+"},
-			{:name => "2,500", :price => 100, :sign => "+"},
-			{:name => "5,000", :price => 100, :sign => "+"},
-			{:name => "10,000", :price => 100, :sign => "+"},
-			{:name => "15,000", :price => 100, :sign => "+"},
-			{:name => "25,000", :price => 100, :sign => "+"},
-			{:name => "50,000", :price => 100, :sign => "+"},
-			{:name => "100,000", :price => 100, :sign => "+"},
+			{:name => "2,500", :price => 200, :sign => "+"},
+			{:name => "5,000", :price => 300, :sign => "+"},
+			{:name => "10,000", :price => 400, :sign => "+"},
+			{:name => "15,000", :price => 500, :sign => "+"},
+			{:name => "25,000", :price => 600, :sign => "+"},
+			{:name => "50,000", :price => 700, :sign => "+"},
+			{:name => "100,000", :price => 800, :sign => "+"},
 			{:name => "Over 100,000 (Request Quote)", :price => 100, :sign => "+"}
 		]
 	},
@@ -74,9 +74,9 @@ l.details = [
 		[
 			{:name => "Non-Profit, Educational", :price => 100, :sign => "+"},
 			{:name => "Independent Media Production", :price => 200, :sign => "+"},
-			{:name => "Business/Corporate - Internal Use", :price => 200, :sign => "+"},
-			{:name => "Business/Corp - External For Profit", :price => 200, :sign => "+"},
-			{:name => "Commercial Media Production", :price => 200, :sign => "+"}
+			{:name => "Business/Corporate - Internal Use", :price => 300, :sign => "+"},
+			{:name => "Business/Corp - External For Profit", :price => 400, :sign => "+"},
+			{:name => "Commercial Media Production", :price => 500, :sign => "+"}
 		]
 	},
 	{:name => "Song Use", :options => 
@@ -89,15 +89,15 @@ l.details = [
 	{:name => "Number Tracks", :options => 
 		[
 			{:name => "1 Tracks", :price => 100, :sign => "+"},
-			{:name => "2 Tracks", :price => 100, :sign => "+"},
-			{:name => "3 Tracks", :price => 100, :sign => "+"},
-			{:name => "4 Tracks", :price => 100, :sign => "+"},
-			{:name => "5 Tracks", :price => 100, :sign => "+"},
-			{:name => "6 Tracks", :price => 100, :sign => "+"},
-			{:name => "7 Tracks", :price => 100, :sign => "+"},
-			{:name => "8 Tracks", :price => 100, :sign => "+"},
-			{:name => "9 Tracks", :price => 100, :sign => "+"},
-			{:name => "10 Tracks", :price => 100, :sign => "+"},
+			{:name => "2 Tracks", :price => 200, :sign => "+"},
+			{:name => "3 Tracks", :price => 340, :sign => "+"},
+			{:name => "4 Tracks", :price => 420, :sign => "+"},
+			{:name => "5 Tracks", :price => 553, :sign => "+"},
+			{:name => "6 Tracks", :price => 600, :sign => "+"},
+			{:name => "7 Tracks", :price => 700, :sign => "+"},
+			{:name => "8 Tracks", :price => 840, :sign => "+"},
+			{:name => "9 Tracks", :price => 960, :sign => "+"},
+			{:name => "10 Tracks", :price => 1045, :sign => "+"},
 			{:name => "10+ Tracks (Request Quote)", :price => 200, :sign => "+"}
 
 		]

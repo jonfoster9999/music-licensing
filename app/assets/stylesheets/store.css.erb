@@ -437,7 +437,7 @@ hr {
 	z-index: 100;
   overflow-y: scroll;*/
   width: 600px;
-  background-image: url('https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg');
+  background-image: url(<%= asset_path 'texture.jpg' %>);
   border: 3px solid black;
   padding-bottom: 30px;
   text-align: center;
@@ -494,10 +494,7 @@ ul {
 
   margin-right: 1px;
 	overflow: hidden;
-
-  background-image: url('https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg');
-/*  background-image: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/brushedmetal103.jpg'); */ 
-/*   background: linear-gradient(to right, #ddd, #dcdcdc); */
+  background-image: url(<%= asset_path 'texture.jpg' %>);
 }
 
 
@@ -644,6 +641,7 @@ select {
 #dismiss {
   clear: both;
 }
+
 
 @media only screen and (max-width: 880px) {
   body {
