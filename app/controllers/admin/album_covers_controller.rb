@@ -1,4 +1,7 @@
 class Admin::AlbumCoversController < ApplicationController
+
+  layout "texture"
+
   def index
   	AlbumCover.import
   	@covers = AlbumCover.find_each

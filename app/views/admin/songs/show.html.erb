@@ -1,9 +1,13 @@
-<%= stylesheet_link_tag "song" %>
+<%= stylesheet_link_tag "admin/songs" %>
 
 
-<%= link_to "Home", "/store" %><br>
-Title: <%= @song.title %><br>
-<br>
+<%= link_to "Home", "/store" %>
+<%= link_to "Dashboard", admin_dashboard_path %>
+<%= link_to "Back To Songs", admin_songs_path %>
+<br><br>
+<%= link_to "Edit", edit_admin_song_path(@song) %>
+<div class="song-info">
+Title: <%= @song.title %>
 <div class="song__tag__group">
 <p>Genres:</p> 
 	<ul>
@@ -13,7 +17,6 @@ Title: <%= @song.title %><br>
 	</ul>
 </div>
 
-<br>
 
 <div class="song__tag__group">
 	<p>Tags:</p>
@@ -27,12 +30,13 @@ Title: <%= @song.title %><br>
 <% if @song.catalog %>
 Catalog: <%= @song.catalog.name %>
 <% end %>
-	<br>
-<%= link_to "Edit", edit_admin_song_path(@song) %>
+</div>
+<br>
+<div class="song-info">
 <h4>Lyrics: </h4>
 
 <p id=lyrics data-id="<%= @song.id %>"></p>
-
+</div>
 <script>
 var id = $('#lyrics').data("id")
 $.get("/admin/songs/" + id + ".json")

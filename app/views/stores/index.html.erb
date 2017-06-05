@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag 'store' %>
 <div class="header">
 	<div class="header__info">
-	<p class='left'>Built by Jonathan Foster |Rails|JavaScript|PostgreSQL|<br>jon.foster.ny@gmail.com - 631-494-8627</p>
-	<p class='left right'>All songs written, recorded, and produced by the programmer</p><p class='left right under' style="clear:right;"><%= image_tag "playvid", :height => "12px", :class => 'vid' %>Watch Video</p>
+		<p class='left'>Built by Jonathan Foster |Rails|JavaScript|PostgreSQL|<br>jon.foster.ny@gmail.com - 631-494-8627</p>
+		<p class='left right'>All songs written, recorded, and produced by the programmer</p><p class='left right under' style="clear:right;"><%= image_tag "playvid", :height => "12px", :class => 'vid' %>Watch Video</p>
 	</div>
 </div>
 <br>
@@ -10,13 +10,14 @@
 <br>
 <br>
 <div id="reset_link">
+	<%= link_to "Dashboard", admin_dashboard_path if user_signed_in? %>
+	<%= link_to "My Licenses", user_accepted_licenses_path(current_user.id) if user_signed_in? %>
 
-<%= link_to "My Licenses", user_accepted_licenses_path(current_user.id) if user_signed_in? %>
-<%= link_to "Dashboard", admin_dashboard_path if user_signed_in? %>
-<%= link_to(
-	      'Reset filters',
-	      reset_filterrific_url)  %>
+	<%= link_to(
+		'Reset filters',
+		reset_filterrific_url)  %>
 </div>
+
 <% if @flag == true %>
 	<p class="flag" data-info="true"></p>
 <% else %>
@@ -28,107 +29,86 @@
 	<a href="#" id="sign_in">Sign In</a>
 <% else %>
 	<span id="user_name">
-		
-		<span id="name"><%= current_user.email %></span><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
+	<span id="name"><%= current_user.email %></span><%= link_to "(logout)", destroy_user_session_path, :method => "delete" %>
 	</span>
-	<% end %>
+<% end %>
 <br>
 
-
-<!-- Beginning of filter form-->
-
-<!--end of filter form -->
-
 <div id="whole_thing">
-  	<div class="store">
+	<div class="store">
 		<%= form_for_filterrific @filterrific do |f| %>
-				
-				Catalog
+			
+			Catalog
 			<select id="catalog__select" name="filterrific[with_catalog_id]">
-			<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Catalog.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
-			    
-			    Artist
+
+			Artist
 			<select id="artist__select" name="filterrific[with_artist_id]">
-			<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Artist.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
 
-				Genres
+			Genres
 			<select id="genre__select" name="filterrific[with_any_genre_ids]">
-			<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Genre.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
 
-				Tag 1
+			Tag 1
 			<select id="tag__select_1" name="filterrific[with_any_tag_ids_1]">
-			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
 
-				Tag 2
+			Tag 2
 			<select id="tag__select_2" name="filterrific[with_any_tag_ids_2]">
-			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
 
-				Tag 3
+			Tag 3
 			<select id="tag__select_3" name="filterrific[with_any_tag_ids_3]">
-			<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
+				<%= options_for_select Tag.all.collect{|mt| [mt.name, mt.id]}.insert(0, "Any") %>
 			</select>
 
 			<% if user_signed_in? %>
-					Saved
+				Saved
 				<select id="user__select" name="filterrific[with_any_user_ids]">
-				<option value ="Any">All</option>
-				<option value="<%= current_user.id %>">Saved</option>
+					<option value ="Any">All</option>
+					<option value="<%= current_user.id %>">Saved</option>
 				</select>
 			<% end %>
 		<% end %>
 	</div>
-  <%# add an automated spinner to your form when the list is refreshed %>
+
 	<div class="head">
-
-<!-- 	<div id="songView">
-		    
-	<h3>Now Playing:</h3> 
-		<div class="button_experiment playerButton">
+		<div id="waveform">
+			<%= image_tag 'logo_trans.png', :class => "wave__image" %>
 		</div>
-		<span id="stop"><%= image_tag "stop.png", :height => "18px", :class=>"stop__button" %></span><br>
-	<span id="songPlaying">Select A Song
-	</span>
-	<span>
-	</span>
-		
-	</div> -->
-	<div id="waveform">
-		<%= image_tag 'logo_trans.png', :class => "wave__image" %>
+		<p class="generating"></p>
 	</div>
-	<p class="generating"></p>
 
-</div>
-<div id="controls">
-<span id="songPlaying">Select A Song
-	</span>
-	<div id="buttons">
-	<div class="button_experiment now_playing_button playerButton">
+	<div id="controls">
+		<span id="songPlaying">Select A Song
+		</span>
+		<div id="buttons">
+			
+			<div class="button_experiment now_playing_button playerButton">
+			</div>
+			<span id="stop"><%= image_tag "stop.png", :height => "18px", :class =>"stop__button" %></span>	
+		</div>
 	</div>
-	<span id="stop"><%= image_tag "stop.png", :height => "18px", :class =>"stop__button" %></span>	
+	<br>
+	
+	<div id="something">
+		<%= render(partial: 'stores/list', locals: { songs: @songs }) %>
 	</div>
 </div>
 <br>
-
-
-<div id="something">
-<%= render(
-  partial: 'stores/list',
-  locals: { songs: @songs }) %>
-</div>
-
-</div>
-<br><br><br>
+<br>
+<br>
 
 <audio preload="auto" id="player"></audio>
+
 <div id="overlay">
-	<!-- licensing overlay -->
-	<div id="licenseInfo">
-	</div>
+	<div id="licenseInfo"></div>
 </div>
 
 <div id="overlay2">
@@ -137,47 +117,51 @@
 
 
 <script>
-$(function(){
-	$('#spacer').hide();
-	$('#controls').hide();
-	var wavesurfer = WaveSurfer.create({
-	    container: '#waveform',
-	    waveColor: 'black',
-	    progressColor: 'lightgray',
-	    backend: 'MediaElement'
-	});
-	var currentSong = ""
-	function addHandlers() {
-		$('.playButton').on('click', function(e){
-			e.preventDefault();
+	$(function(){
+		$('#spacer').hide();
+		$('#controls').hide();
+		var wavesurfer = WaveSurfer.create({
+			container: '#waveform',
+			waveColor: 'black',
+			progressColor: 'lightgray',
+			backend: 'MediaElement'
+		});
+		wavesurfer.on('finish', function(e) {
 			$('.playButton').css('background-position', '0px');
-			$('.playerButton').css('background-position', '-23px');
-			$(this).css('background-position', '-23px');
-			$('.playButton').removeClass('playing');
-			$(this).addClass('playing');
-			var song = $(this).parent().find(".title").html();
-			var artist = $(this).parent().find(".artist").html();
-			var songPlayer = $('#player')[0];
-			$('#songPlaying').html("").append("Now Playing: " + song);
-			var variable = artist + " - " + song + ".mp3";
-			var url = "<%= asset_path('rock.mp3') %>"
-			var p1 =  new Promise(function(resolve, reject){
-				$.get("/converter/" + variable).then(function(data){
-				resolve(data)
-				}) 
-			})
-			
-			p1.then(function(data){
-				console.log("now")
-				url = data
-				console.log(url)
-				$('.playerButton').off();
-				$('.playerButton').click(function(){
-					if(wavesurfer.isPlaying()) {
-						$('.playButton').css('background-position', '0px');
-						$('.playerButton').css('background-position', '0px');
-						wavesurfer.pause();
-					} else {
+			$('.playerButton').css('background-position', '0px');
+		})
+		var currentSong = ""
+		function addHandlers() {
+			$('.playButton').on('click', function(e){
+				e.preventDefault();
+				$('.playButton').css('background-position', '0px');
+				$('.playerButton').css('background-position', '-23px');
+				$(this).css('background-position', '-23px');
+				$('.playButton').removeClass('playing');
+				$(this).addClass('playing');
+				var song = $(this).parent().find(".title").html();
+				var artist = $(this).parent().find(".artist").html();
+				var songPlayer = $('#player')[0];
+				$('#songPlaying').html("").append("Now Playing: " + song);
+				var variable = artist + " - " + song + ".mp3";
+				var url = "<%= asset_path('rock.mp3') %>"
+				var p1 =  new Promise(function(resolve, reject){
+					$.get("/converter/" + variable).then(function(data){
+						resolve(data)
+					}) 
+				})
+
+				p1.then(function(data){
+					console.log("now")
+					url = data
+					console.log(url)
+					$('.playerButton').off();
+					$('.playerButton').click(function(){
+						if(wavesurfer.isPlaying()) {
+							$('.playButton').css('background-position', '0px');
+							$('.playerButton').css('background-position', '0px');
+							wavesurfer.pause();
+						} else {
 						// make the song that is playing go back to the pause position also
 						$('.playing').css('background-position', '-23px');
 						$('.playerButton').css('background-position', '-23px');
@@ -186,11 +170,11 @@ $(function(){
 						wavesurfer.play();
 					}
 				})
-				if (url != currentSong) {
-					songPlayer.src = url;
-					wavesurfer.load(url);
-					wavesurfer.on('ready', function(){
-						$('.generating').text("Generating Waveform...")
+					if (url != currentSong) {
+						songPlayer.src = url;
+						wavesurfer.load(url);
+						wavesurfer.on('ready', function(){
+							$('.generating').text("Generating Waveform...")
 							$('#controls').slideDown();
 							$('.wave__image').hide();
 							wavesurfer.play();
@@ -198,119 +182,110 @@ $(function(){
 								alert("yo!!")
 							})
 
-					})
-					currentSong = url;
-				} else {
-					if(wavesurfer.isPlaying()) {
-						$('.playerButton').css('background-position', '0px');
-						$('.playButton').css('background-position', '0px');
-						wavesurfer.pause();
-					} else {
-						$('.wave__image').hide();
-						$('#controls').slideDown();
-						wavesurfer.play();
-					}
-				}
-			});
-		})
-		$('.license__link').click(function(e) {
-			e.preventDefault();
- 			var userId = $(this).data("user")
-		 	if (userId == null) {
-		 		alert("Sign in to build a license")
-		 	} else {
-				var song_id = $(this).data("song-id")
-				var html = "";
-				var url = e.target + ".json";
-				$.get(url, function(data){
-					html += "<h1>Licensing info for <span id='song__title' data-song-id= '" + song_id + "'>" + data.title + "</span></h1>";
-					$.get("/licenses/types", function(response) {
-						html += response;
-					}).then(function(){
-						html += "<div id='licenseInfoDetails'></div><br>";
-						html += "<div id='licenseInfoPrice'></div><br>";
-						html += "<div><button id='dismiss'>Dismiss</button></div>";
-						$('#licenseInfo').html("").append(html)
-						$('#dismiss').click(function(e){
-							$('#overlay').hide();
-						});
-						$('#license__types').on('change', updateLicenseView)
-					})		
-					$('#overlay').show();
-				})
-			}
-		})
-	}
-	function updateLicenseView() {
-		var id = ($("#license__types").val())
-		$.get('/licenses/' + id + "/details", function(data) {
-			$('#licenseInfoDetails').html("").append(data)
-		}).then(function(){
-			$(".select__details").on("change", function(){
-				var total = 0;
-				var array = []
-				$.each($(".select__details"), function(index, value) {
-					array.push($(this).val())
-					var amount = $(this).find(":selected")[0].dataset.price
-					if (amount != undefined) {
-						total += Number(amount)
-					}
-				})
-				if (array.indexOf("Select...") < 0) {
-					$('#licenseInfoPrice').html("").append("<button class='myButton' style='background: lightgreen;'>Accept calculated total of $<span id='price'>" + total + "</span></button>")
-					$('.myButton').click(function(){
-						var categoryArray = $('.li__details').toArray().map(function(x) {
-							return x.innerHTML.split("<br>")[0];
-						});
-						var selectedArray = $('.select__details').toArray().map(function(x) {
-							return x.value;
-						});
-						var song_id = $('#song__title').data("song-id");
-						var price = Number($('#price').html());
-						var details = categoryArray.map(function(e, i) {
-							return [e, selectedArray[i]]
 						})
-						console.log(details)
-						var hash = {
-							accepted_license: {
-							license_details: details,
-							price: price,
-							song_id: song_id
-							}
+						currentSong = url;
+					} else {
+						if(wavesurfer.isPlaying()) {
+							$('.playerButton').css('background-position', '0px');
+							$('.playButton').css('background-position', '0px');
+							wavesurfer.pause();
+						} else {
+							$('.wave__image').hide();
+							$('#controls').slideDown();
+							wavesurfer.play();
 						}
-						$.ajax({
-							method: "POST",
-							data: hash,
-							url: "/accepted_licenses"
+					}
+				});
+
+			})
+			$('.license__link').click(function(e) {
+				e.preventDefault();
+				var userId = $(this).data("user")
+				if (userId == null) {
+					alert("Sign in to build a license")
+				} else {
+					var song_id = $(this).data("song-id")
+					var html = "";
+					var url = e.target + ".json";
+					$.get(url, function(data){
+						html += "<h1>Licensing info for <span id='song__title' data-song-id= '" + song_id + "'>" + data.title + "</span></h1>";
+						$.get("/licenses/types", function(response) {
+							html += response;
+						}).then(function(){
+							html += "<div id='licenseInfoDetails'></div><br>";
+							html += "<div id='licenseInfoPrice'></div><br>";
+							html += "<div><button id='dismiss'>Dismiss</button></div>";
+							$('#licenseInfo').html("").append(html)
+							$('#dismiss').click(function(e){
+								$('#overlay').hide();
+							});
+							$('#license__types').on('change', updateLicenseView)
+						})		
+						$('#overlay').show();
+					})
+				}
+			})
+		}
+		function updateLicenseView() {
+			var id = ($("#license__types").val())
+			$.get('/licenses/' + id + "/details", function(data) {
+				$('#licenseInfoDetails').html("").append(data)
+			}).then(function(){
+				$(".select__details").on("change", function(){
+					var total = 0;
+					var array = []
+					$.each($(".select__details"), function(index, value) {
+						array.push($(this).val())
+						var amount = $(this).find(":selected")[0].dataset.price
+						if (amount != undefined) {
+							total += Number(amount)
+						}
+					})
+					if (array.indexOf("Select...") < 0) {
+						$('#licenseInfoPrice').html("").append("<button class='myButton' style='background: lightgreen;'>Accept calculated total of $<span id='price'>" + total + "</span></button>")
+						$('.myButton').click(function(){
+							var categoryArray = $('.li__details').toArray().map(function(x) {
+								return x.innerHTML.split("<br>")[0];
+							});
+							var selectedArray = $('.select__details').toArray().map(function(x) {
+								return x.value;
+							});
+							var song_id = $('#song__title').data("song-id");
+							var price = Number($('#price').html());
+							var details = categoryArray.map(function(e, i) {
+								return [e, selectedArray[i]]
+							})
+							console.log(details)
+							var hash = {
+								accepted_license: {
+									license_details: details,
+									price: price,
+									song_id: song_id
+								}
+							}
+							$.ajax({
+								method: "POST",
+								data: hash,
+								url: "/accepted_licenses"
 							}).then(function(data){
 								window.location.replace(data)
 							})
-					})
-				} else {
-					$('#licenseInfoPrice').html("");
-				}
-			})
-		})
-	}
-	addHandlers();
-	$('form').on("change", function(){
-		setTimeout(addHandlers, 1000);
-	});
-	$('#sign_up').click(function(e){
-		e.preventDefault();
-		$.get("/users/sign_up")
-			.then(function(data) {
-				$('#licenseInfo').html("").append(data);
-				$('#licenseInfo').append("<button id='cancel'>Cancel</button>")
-				$('#overlay').show();
-				$('#cancel').click(function() {
-				$('#overlay').hide();
+						})
+					} else {
+						$('#licenseInfoPrice').html("");
+					}
 				})
-			});
-	});
-	$('#sign_in').click(function(e) {
-		e.preventDefault();
-		$.get("/users/sign_in")
+			})
+		}
+
+		addHandlers();
+		$('form').on("change", function(){
+			setTimeout(addHandlers, 1000);
+		});
+
+		$('#sign_up').click(function(e){
+			e.preventDefault();
+			$.get("/users/sign_up")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
 				$('#licenseInfo').append("<button id='cancel'>Cancel</button>")
@@ -319,50 +294,63 @@ $(function(){
 					$('#overlay').hide();
 				})
 			});
-	});
-	if ($('.flag').data("info") == true) {
-		$.get("/users/sign_in")
+		});
+
+		$('#sign_in').click(function(e) {
+			e.preventDefault();
+			$.get("/users/sign_in")
+			.then(function(data) {
+				$('#licenseInfo').html("").append(data);
+				$('#licenseInfo').append("<button id='cancel'>Cancel</button>")
+				$('#overlay').show();
+				$('#cancel').click(function() {
+					$('#overlay').hide();
+				})
+			});
+		});
+
+		if ($('.flag').data("info") == true) {
+			$.get("/users/sign_in")
 			.then(function(data) {
 				$('#licenseInfo').html("").append(data);
 				$('#overlay').show();
 			});
-	}
-	$('select').on('change', function(){
-		if ($(this).val() != "Any") {
-			$(this).css('background-color', 'lightblue')
-		} else {
-			$(this).css('background-color', 'white')
 		}
-		setTimeout(function(){
-		if ($('li').length < 10) {
-			$('#spacer').show();
-		} else {
-			$('#spacer').hide();
-		}
-		addLyricHandlers();
-		addCoverArtHandlers();
-	}, 300);
-		
-	});
-	$('#stop').click(function(){
-		$('.generating').text("")
-		$('.playButton').css('background-position', '0px');
-		$('.playerButton').css('background-position', '0px');
-		$('.wave__image').css("margin-bottom", "20px");
-		$('.wave__image').show();
-		$('#controls').slideUp();
-		wavesurfer.stop();
-	});	
-	$('#song__list').change(function(){
-		alert("handler");
-	});
-	function addCoverArtHandlers() {
-		$('.cover_art').click(function(event){
-			event.preventDefault();
-			
-			var songId = event.target.getAttribute("data-id")
-			var pic = '<img src="/assets/' + $(this).attr("href") + '">'
-			$.get("/admin/songs/" + songId + ".json")
+
+		$('select').on('change', function(){
+			if ($(this).val() != "Any") {
+				$(this).css('background-color', 'lightblue')
+			} else {
+				$(this).css('background-color', 'white')
+			}
+			setTimeout(function(){
+				if ($('li').length < 10) {
+					$('#spacer').show();
+				} else {
+					$('#spacer').hide();
+				}
+				addLyricHandlers();
+				addCoverArtHandlers();
+			}, 300);
+
+		});
+
+		$('#stop').click(function(){
+			$('.generating').text("")
+			$('.playButton').css('background-position', '0px');
+			$('.playerButton').css('background-position', '0px');
+			$('.wave__image').css("margin-bottom", "20px");
+			$('.wave__image').show();
+			$('#controls').slideUp();
+			wavesurfer.stop();
+		});	
+
+		function addCoverArtHandlers() {
+			$('.cover_art').click(function(event){
+				event.preventDefault();
+				var songId = event.target.getAttribute("data-id")
+				var pic = '<img src="/assets/' + $(this).attr("href") + '">'
+				$.get("/admin/songs/" + songId + ".json")
 				.then(function(data){
 					var artistName = data.artist.name
 					var artistDescription = data.artist.description
@@ -380,28 +368,28 @@ $(function(){
 						$(this).hide();
 					})
 				})
-		})
-	}
-	function addLyricHandlers() {
-		$('.lyrics').click(function() {
-	 		var songId = $(this).data("id")
-	 		$.get('/admin/songs/' + songId + ".json")
-	 			.then(function(response){
-	 				var $lyricsDiv = $("<div id='lyrics__div'></div>")
-	 				var header = "<h2>Lyrics for " + response.title + "</h2>"
-	 				$lyricsDiv.append(header)
-	 				var lyrics = response.lyrics
-	 				$lyricsDiv.append("<p>" + lyrics + "</p>")
-	 				$('#overlay2').html("").append($lyricsDiv)
-	 					$('#overlay2').css('display', 'flex');
-	 					$('#overlay2').show();
-	 					$('#overlay2').click(function(){
-	 						$(this).hide();
-	 					})
-	 			})
-	 	})
-	}
-	addCoverArtHandlers();
-	addLyricHandlers();
-})
+			})
+		}
+		function addLyricHandlers() {
+			$('.lyrics').click(function() {
+				var songId = $(this).data("id")
+				$.get('/admin/songs/' + songId + ".json")
+				.then(function(response){
+					var $lyricsDiv = $("<div id='lyrics__div'></div>")
+					var header = "<h2>Lyrics for " + response.title + "</h2>"
+					$lyricsDiv.append(header)
+					var lyrics = response.lyrics
+					$lyricsDiv.append("<p>" + lyrics + "</p>")
+					$('#overlay2').html("").append($lyricsDiv)
+					$('#overlay2').css('display', 'flex');
+					$('#overlay2').show();
+					$('#overlay2').click(function(){
+						$(this).hide();
+					})
+				})
+			})
+		}
+		addCoverArtHandlers();
+		addLyricHandlers();
+	})
 </script>

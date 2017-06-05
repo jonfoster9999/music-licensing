@@ -1,5 +1,7 @@
 class Admin::CatalogsController < ApplicationController
-def index 
+
+	
+	def index 
 		@catalogs = Catalog.find_each
 	end 
 

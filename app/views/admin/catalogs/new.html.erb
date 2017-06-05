@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'texture' %>
+<%= link_to "Home", "/store" %>
+<%= link_to "Dashboard", admin_dashboard_path %>
 <% if @catalog.errors.any? %>
 	<% @catalog.errors.full_messages.each do |message| %>
 		<p><%= message %></p>
