@@ -7,7 +7,7 @@ class Admin::TagsController < ApplicationController
 	def destroy
 		@tag = Tag.find(params[:id])
 		@tag.destroy 
-		redirect_to "admin/tags" 
+		redirect_to "/admin/tags" 
 	end 
 
 	def new
