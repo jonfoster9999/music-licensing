@@ -43,6 +43,6 @@ class Admin::TagsController < ApplicationController
 
 	private 
 		def tags_params 
-			params.require(:tag).permit(:name)
+			params.require(:tag).permit(:name, :song_ids => [])
 		end
 end

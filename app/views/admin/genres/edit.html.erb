@@ -2,4 +2,4 @@
 
 <h3>Edit Genre: </h3>
 
-<%= render(partial: 'admin/resourceform', locals: { resource: @genre }) %>
+<%= render(partial: 'admin/resourceform', locals: { resource: @genre, url:admin_genre_path(@genre) }) %>

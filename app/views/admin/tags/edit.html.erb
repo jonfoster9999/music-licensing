@@ -2,4 +2,4 @@
 
 <h3>Edit Tag: </h3>
 
-<%= render(partial: 'admin/resourceform', locals: { resource: @tag }) %>
+<%= render(partial: 'admin/resourceform', locals: { resource: @tag, url:admin_tag_path(@tag) }) %>
