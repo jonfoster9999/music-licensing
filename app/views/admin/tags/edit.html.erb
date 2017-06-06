@@ -1,13 +1,5 @@
-<%= stylesheet_link_tag 'texture' %>
-<% if @tag.errors.any? %>
-	<% @tag.errors.full_messages.each do |message| %>
-		<p><%= message %></p>
-	<% end %>
-<% end %>
+<%= render(partial: 'admin/resourceheader', locals: { resource: @tag }) %>
 
 <h3>Edit Tag: </h3>
-<%= form_for @tag, url: admin_tag_path(@tag) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.submit %>
-<% end %>
+
+<%= render(partial: 'admin/resourceform', locals: { resource: @tag }) %>

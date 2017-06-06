@@ -1,13 +1,5 @@
-<%= stylesheet_link_tag 'texture' %>
-<% if @catalog.errors.any? %>
-	<% @catalog.errors.full_messages.each do |message| %>
-		<p><%= message %></p>
-	<% end %>
-<% end %>
+<%= render(partial: 'admin/resourceheader', locals: { resource: @catalog }) %>
 
-<h3>Edit catalog: </h3>
-<%= form_for @catalog, url: admin_catalog_path(@catalog) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.submit %>
-<% end %>
+<h3>Edit Catalog: </h3>
+
+<%= render(partial: 'admin/resourceform', locals: { resource: @catalog }) %>

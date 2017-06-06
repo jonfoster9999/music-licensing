@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag 'texture' %>
+<%= stylesheet_link_tag 'admin/album_covers' %>
+<% if resource.errors.any? %>
+	<% resource.errors.full_messages.each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
+<%= link_to "Home", "/store" %>
+<%= link_to "Dashboard", admin_dashboard_path %>
