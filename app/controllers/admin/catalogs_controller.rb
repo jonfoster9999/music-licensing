@@ -29,7 +29,7 @@ class Admin::CatalogsController < ApplicationController
 		end
 	end
 
-	def update 
+	def update
 		@catalog = Catalog.find(params[:id])
 		if @catalog.update(catalogs_params)
 			redirect_to admin_catalogs_path 
@@ -38,8 +38,12 @@ class Admin::CatalogsController < ApplicationController
 		end
 	end
 
+	def show 
+		@catalog = Catalog.find(params[:id])
+	end
+
 	private 
 		def catalogs_params 
-			params.require(:catalog).permit(:name)
+			params.require(:catalog).permit(:name, :song_ids => [])
 		end
 end

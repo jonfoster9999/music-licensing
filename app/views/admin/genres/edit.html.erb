@@ -1,13 +1,5 @@
-<%= stylesheet_link_tag 'texture' %>
-<% if @genre.errors.any? %>
-	<% @genre.errors.full_messages.each do |message| %>
-		<p><%= message %></p>
-	<% end %>
-<% end %>
+<%= render(partial: 'admin/resourceheader', locals: { resource: @genre }) %>
 
 <h3>Edit Genre: </h3>
-<%= form_for @genre, url: admin_genre_path(@genre) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.submit %>
-<% end %>
+
+<%= render(partial: 'admin/resourceform', locals: { resource: @genre }) %>

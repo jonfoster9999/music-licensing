@@ -1,0 +1,12 @@
+<%= form_for resource, url: admin_genre_path(resource) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<div class="album-cover-select">
+		<%= f.collection_check_boxes(:song_ids, Song.all, :id, :title) do |b| %>
+		        <%= b.label class:"label-checkbox" do%>
+		         <%=b.check_box + b.text%>
+				<% end %>
+		<% end %>
+	</div>
+	<%= f.submit %>
+<% end %>

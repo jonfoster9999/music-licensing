@@ -6,7 +6,7 @@
 <%= stylesheet_link_tag 'tags' %>
 <ul>
 <% @catalogs.each do |catalog| %>
-	<li><%= link_to catalog.name, admin_catalog_path(catalog)%> - <%= link_to "x", admin_catalog_path(catalog), :method => :delete %> - <%= link_to "edit", edit_admin_catalog_path(catalog) %></li>
+	<li><%= catalog.name %> - <%= link_to "x", admin_catalog_path(catalog), :method => :delete %> - <%= link_to "edit", edit_admin_catalog_path(catalog) %></li>
 
 <% end %>
 </ul>
