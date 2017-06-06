@@ -2,14 +2,14 @@
 <div class="header">
 	<div class="header__info">
 		<p class='left'>Built by Jonathan Foster |Rails|JavaScript|PostgreSQL|<br>jon.foster.ny@gmail.com - 631-494-8627</p>
-		<p class="left right">________________________________________________________________</p>
-		<p class='left right under' style="clear: right;">All songs written, recorded, and produced by the programmer</p>
-	<!-- 	<p class='left right under' style="clear:right;"><%= image_tag "playvid", :height => "12px", :class => 'vid' %>Watch Video</p> -->
+		<p class='left right' style="clear: right;">All songs written, recorded, and produced by the programmer</p>
+	<p class='left right under' id="play-vid" style="clear:right;"><%= image_tag "playvid", :height => "12px", :class => 'vid' %>Watch Video</p>
 	</div>
 </div>
 <br>
 <br>
 <br>
+
 <br>
 <div id="reset_link">
 	<%= link_to "Dashboard", admin_dashboard_path if user_signed_in? %>
@@ -116,6 +116,11 @@
 <div id="overlay2">
 
 </div>
+
+<div id="overlay3">
+
+</div>
+
 
 
 <script>
@@ -392,6 +397,16 @@
 				})
 			})
 		}
+
+		$('#play-vid').click(function(){
+			$('#overlay3').html("").append('<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/f25xvBSr89o" frameborder="0" allowfullscreen></iframe></div>')
+			$('#overlay3').show();
+			$('#overlay3').click(function(){
+
+				$(this).html("").hide();
+			})
+		})
+
 		addCoverArtHandlers();
 		addLyricHandlers();
 	})

@@ -37,10 +37,15 @@ Catalog: <%= @song.catalog.name %>
 
 <p id=lyrics data-id="<%= @song.id %>"></p>
 </div>
+<script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
 <script>
-var id = $('#lyrics').data("id")
+var id = $('#lyrics').data("id");
 $.get("/admin/songs/" + id + ".json")
 	.then(function(response) {
+		console.log("huh")
 		$('#lyrics').append(response.lyrics)
 	})
 </script>
