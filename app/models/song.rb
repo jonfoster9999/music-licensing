@@ -30,8 +30,6 @@ class Song < ApplicationRecord
 	  ]
 	)
 
-<<<<<<< HEAD
-=======
 
 	belongs_to :artist, :required => false
 	belongs_to :catalog, :required => false
@@ -53,7 +51,6 @@ class Song < ApplicationRecord
 	accepts_nested_attributes_for :genres
 	accepts_nested_attributes_for :artist
 
->>>>>>> dce47e393296ec420c5bde7c48b211dda753a57c
 	scope :sorted_by, lambda {|query|
 		order(query)
 	}

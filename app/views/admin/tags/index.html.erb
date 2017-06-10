@@ -5,14 +5,9 @@
 <%= link_to "Create New Tag", new_admin_tag_path %>
 <%= stylesheet_link_tag 'tags' %>
 <ul>
-<<<<<<< HEAD
+
 	<% @tags.each do |tag| %>
 	<li><%= tag.name %> - <%= link_to "x", admin_tag_path(tag), :method => :delete %> - <%= link_to "edit", edit_admin_tag_path(tag) %></li>
 	<% end %>
-=======
-<% @tags.each do |tag| %>
-	<li><%= tag.name %> - <%= link_to "x", admin_tag_path(tag), :method => :delete %> - <%= link_to "edit", edit_admin_tag_path(tag) %></li>
 
-<% end %>
->>>>>>> dce47e393296ec420c5bde7c48b211dda753a57c
 </ul>

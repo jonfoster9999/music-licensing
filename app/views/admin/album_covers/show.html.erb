@@ -3,9 +3,10 @@
 <%= link_to "Dashboard", admin_dashboard_path %>
 <%= link_to "Back to Album Covers", admin_album_covers_path %><br>
 <%= image_tag "#{@cover.file_name}", :height => '300px' %><br>
+<%= link_to "Set which songs have this cover", edit_admin_album_cover_path(@cover) %>
 <ul>
 	<% @cover.songs.each do |song| %>
 		<li><%= song.title %></li>
 	<% end %>
 </ul>
-<%= link_to "Set which songs have this cover", edit_admin_album_cover_path(@cover) %>
+
