@@ -4,7 +4,14 @@
 <%= link_to "Create New Genre", new_admin_genre_path %>
 <%= stylesheet_link_tag 'tags' %>
 <ul>
+<<<<<<< HEAD
 	<% @genres.each do |genre| %>
 		<li><%= genre.name %> - <%= link_to "x", admin_genre_path(genre), :method => :delete %> - <%= link_to "edit", edit_admin_genre_path(genre) %></li>
 	<% end %>
+=======
+<% @genres.each do |genre| %>
+	<li><%= genre.name %> - <%= link_to "x", admin_genre_path(genre), :method => :delete %> - <%= link_to "edit", edit_admin_genre_path(genre) %></li>
+
+<% end %>
+>>>>>>> dce47e393296ec420c5bde7c48b211dda753a57c
 </ul>

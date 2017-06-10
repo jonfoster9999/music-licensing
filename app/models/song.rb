@@ -30,6 +30,30 @@ class Song < ApplicationRecord
 	  ]
 	)
 
+<<<<<<< HEAD
+=======
+
+	belongs_to :artist, :required => false
+	belongs_to :catalog, :required => false
+
+	has_many :songs_tags
+	has_many :tags, :through => :songs_tags
+	
+	has_many :songs_genres 
+	has_many :genres, :through => :songs_genres 
+
+	belongs_to :album_cover, :required => false
+
+	has_many :user_favorites 
+	has_many :favoriters, :through => :user_favorites, :source => :user
+
+	has_many :accepted_licenses 
+	
+	accepts_nested_attributes_for :tags
+	accepts_nested_attributes_for :genres
+	accepts_nested_attributes_for :artist
+
+>>>>>>> dce47e393296ec420c5bde7c48b211dda753a57c
 	scope :sorted_by, lambda {|query|
 		order(query)
 	}

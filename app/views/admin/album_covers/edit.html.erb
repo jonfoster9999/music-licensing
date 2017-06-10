@@ -3,6 +3,7 @@
 <%= image_tag @cover.file_name, :height => "300px" %>
 
 <%= form_for @cover, :url => "/admin/album_covers/#{@cover.id}", :method => :patch do |f| %>
+<<<<<<< HEAD
 	<div class="album-cover-select">
 		<%= f.collection_check_boxes(:song_ids, Song.all, :id, :title) do |b| %>
 			<%= b.label class:"label-checkbox" do%>
@@ -11,5 +12,18 @@
 		<% end %>
 	</div>
 	<%= f.submit %>
+=======
+<div class="album-cover-select">
+<%= f.collection_check_boxes(:song_ids, Song.all, :id, :title) do |b| %>
+        <%= b.label class:"label-checkbox" do%>
+         <%=b.check_box + b.text%>
+    <% end %>
+
+    <% end %>
+     </div>
+
+
+<%= f.submit %>
+>>>>>>> dce47e393296ec420c5bde7c48b211dda753a57c
 <% end %>
 
