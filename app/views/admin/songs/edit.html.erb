@@ -2,60 +2,63 @@
 <%= stylesheet_link_tag 'admin/songs' %><br>
 <h1>Edit <%= @song.title %></h1>
 <%= form_for @song, :url => "/admin/songs/#{@song.id}" do |f| %>
-<ul class="form-style-1 border">
-
-
+	<ul class="form-style-1 border">
 		<li class="border-field">
-		<div class="push-in">
-		<%= f.label "Genres" %>
-		<div class="border">
-		<%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |b|%>
-			<%= b.label class:"label-checkbox" do %>
-				<%=b.check_box + b.text %>
-			<%end %>
-		<% end %>
-		</div>
-		<%= f.label "(Enter A New Genre)" %>
-		<input class= "input-padding" name="song[genres_attributes][0][name]" id="song_genres_attributes_0_name" type="text">
-		</div>
+			<div class="push-in">
+				<%= f.label "Genres" %>
+				<div class="border">
+					<%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |b|%>
+						<%= b.label class:"label-checkbox" do %>
+							<%=b.check_box + b.text %>
+						<%end %>
+					<% end %>
+				</div>
+				<%= f.label "(Enter A New Genre)" %>
+				<input class= "input-padding" name="song[genres_attributes][0][name]" id="song_genres_attributes_0_name" type="text">
+			</div>
 		</li>
-		
+
 
 		<li class="border-field">
-		<div class="push-in">
-		<%= f.label "Tags" %>
-		<div class="border">
-		<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-			<%= b.label class:"label-checkbox" do %>
-				<%=b.check_box + b.text %>
-			<%end %>
-		<% end %>
-		</div>
-		
-		<%= f.label "(Enter A New Tag)" %>
-		<input name="song[tags_attributes][0][name]" id="song_tags_attributes_0_name" type="text"></div></li>	
+			<div class="push-in">
+				<%= f.label "Tags" %>
+				<div class="border">
+					<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+						<%= b.label class:"label-checkbox" do %>
+							<%=b.check_box + b.text %>
+						<%end %>
+					<% end %>
+				</div>
 
-	    <li class="border-field">
-	    <div class="push-in">
-		<%= f.label "Choose a catalog" %>
-       
-        <select name="song[catalog_id]" %>
-			 <%= options_from_collection_for_select(Catalog.all, :id, :name) %>
-        </select>
+				<%= f.label "(Enter A New Tag)" %>
+				<input name="song[tags_attributes][0][name]" id="song_tags_attributes_0_name" type="text">
+			</div>
+		</li>	
 
-		<%= f.label "Create a new catalog" %>
-        <input name="song[catalog_name]" id="song_catalog_name" type="text"></div></li>
-		
-		
+		<li class="border-field">
+			<div class="push-in">
+				<%= f.label "Choose a catalog" %>
+				<select name="song[catalog_id]" %>
+					<%= options_from_collection_for_select(Catalog.all, :id, :name) %>
+				</select>
+				<%= f.label "Create a new catalog" %>
+				<input name="song[catalog_name]" id="song_catalog_name" type="text">
+			</div>
+		</li>
 
 		<%= f.fields_for :artist do |artist_field| %>
 			<%= artist_field.label "Artist Description" %>
-		 	<%= artist_field.text_area :description %>
-		 	<%= artist_field.hidden_field :name %>
+			<%= artist_field.text_area :description %>
+			<%= artist_field.hidden_field :name %>
 		<% end %> 
-		
-		<li><div class="push-in"><%= f.label "Lyrics", :class => "lyrics-label" %></div></li>
+
+		<li>
+			<div class="push-in"><%= f.label "Lyrics", :class => "lyrics-label" %>	
+			</div>
+		</li>
+			
 		<%= f.text_area :lyrics %><br><br>
-<%= f.submit %> <a href="<%= admin_song_path(@song)%>">cancel</a>
-</ul>
+		<%= f.submit %> 
+		<a href="<%= admin_song_path(@song)%>">cancel</a>
+	</ul>
 <% end %>

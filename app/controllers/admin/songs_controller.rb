@@ -13,7 +13,6 @@ class Admin::SongsController < ApplicationController
 			format.html { render :show}
 			format.json { render :json => @song}
 		end
-
 	end
 
 	def edit

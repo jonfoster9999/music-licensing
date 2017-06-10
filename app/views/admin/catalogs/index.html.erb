@@ -5,8 +5,7 @@
 <%= link_to "Create New Catalog", new_admin_catalog_path %>
 <%= stylesheet_link_tag 'tags' %>
 <ul>
-<% @catalogs.each do |catalog| %>
+	<% @catalogs.each do |catalog| %>
 	<li><%= catalog.name %> - <%= link_to "x", admin_catalog_path(catalog), :method => :delete %> - <%= link_to "edit", edit_admin_catalog_path(catalog) %></li>
-
-<% end %>
+	<% end %>
 </ul>

@@ -1,5 +1,19 @@
 class Song < ApplicationRecord
 
+	belongs_to :artist, :required => false
+	belongs_to :catalog, :required => false
+	has_many :songs_tags
+	has_many :tags, :through => :songs_tags
+	has_many :songs_genres 
+	has_many :genres, :through => :songs_genres 
+	belongs_to :album_cover, :required => false
+	has_many :user_favorites 
+	has_many :favoriters, :through => :user_favorites, :source => :user
+	has_many :accepted_licenses 
+	
+	accepts_nested_attributes_for :tags
+	accepts_nested_attributes_for :genres
+	accepts_nested_attributes_for :artist
 
 	filterrific(
 	  default_filter_params: { :sorted_by => 'songs.id' },
@@ -15,27 +29,6 @@ class Song < ApplicationRecord
 	    :with_any_user_ids 
 	  ]
 	)
-
-
-	belongs_to :artist, :required => false
-	belongs_to :catalog, :required => false
-
-	has_many :songs_tags
-	has_many :tags, :through => :songs_tags
-	
-	has_many :songs_genres 
-	has_many :genres, :through => :songs_genres 
-
-	belongs_to :album_cover, :required => false
-
-	has_many :user_favorites 
-	has_many :favoriters, :through => :user_favorites, :source => :user
-
-	has_many :accepted_licenses 
-	
-	accepts_nested_attributes_for :tags
-	accepts_nested_attributes_for :genres
-	accepts_nested_attributes_for :artist
 
 	scope :sorted_by, lambda {|query|
 		order(query)
@@ -65,10 +58,10 @@ class Song < ApplicationRecord
 				)
 		end
 	}
+
 	scope :with_any_tag_ids_2, lambda { |tag_ids|
 		if tag_ids != "Any"
 			songs_tags = SongsTag.arel_table
-
 			songs = Song.arel_table
 			where(
 				SongsTag \
@@ -78,6 +71,7 @@ class Song < ApplicationRecord
 				)
 		end
 	}
+
 	scope :with_any_tag_ids_3, lambda { |tag_ids|
 		if tag_ids != "Any"
 			songs_tags = SongsTag.arel_table
@@ -91,6 +85,7 @@ class Song < ApplicationRecord
 				)
 		end
 	}
+
 	scope :with_any_genre_ids, lambda { |genre_ids|
 		if genre_ids != "Any"
 			songs_genres = SongsGenre.arel_table
@@ -104,6 +99,7 @@ class Song < ApplicationRecord
 				)
 		end
 	}
+	
 	scope :with_any_user_ids, lambda { |user_ids|
 		if user_ids != "Any"
 			user_favorites = UserFavorite.arel_table

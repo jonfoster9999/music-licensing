@@ -13,14 +13,4 @@ class AlbumCover < ApplicationRecord
 			AlbumCover.find_or_create_by(:file_name => cover_name)
 		end
 	end
-
-	# def song_ids=(song_ids)
-	# 	self.song_ids = song_ids.compact
-	# 	self.save 
-	# 	# Song.find_each.collect {|s| !s.album_cover }.each do |s| 
-	# 	# 	s.album_cover = AlbumCover.first
-	# 	# 	s.save
-	# 	# end
-	# 	binding.pry
-	# end
 end

@@ -1,12 +1,13 @@
 <ul class="imported__list">
-<% @license.details.each do |detail| %>
-	<li class="li__details"><%= detail[:name] %>
-	<br>
-	<select class="select__details">
-	<option>Select...</option>
-	<% detail[:options].each do |option| %>
-		<option data-price="<%= option[:price]%>"><%= option[:name] %></option>
+	<% @license.details.each do |detail| %>
+		<li class="li__details"><%= detail[:name] %>
+			<br>
+			<select class="select__details">
+				<option>Select...</option>
+				<% detail[:options].each do |option| %>
+					<option data-price="<%= option[:price]%>"><%= option[:name] %></option>
+				<% end %>
+			</select>
+		</li>
 	<% end %>
-	</select></li>
-<% end %>
 </ul>

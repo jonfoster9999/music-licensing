@@ -1,16 +1,18 @@
 <%= stylesheet_link_tag 'licenses' %>
 
 <div class="space">
-<p class="under__pic"><%= link_to "Home", root_path %> <%= link_to "Licenses", user_accepted_licenses_path(current_user) %></p><br><br>
+	<p class="under__pic"><%= link_to "Home", root_path %> <%= link_to "Licenses", user_accepted_licenses_path(current_user) %></p>
+	<br>
+	<br>
 </div>
 <div class="paper">
-<h1>License Summary:</h1>
-<h3>"<%= @accepted_license.song.title %>" - <%= @accepted_license.song.artist.name %></h3>
-<% @accepted_license.details.each do |detail| %>
-<span><strong><%= detail.category %></strong> - <%= detail.selected %></span><br>
-<% end %>
-<h3>Price: $<%= @accepted_license.price %></h3>
-<h4>Licensee: <%= @accepted_license.user.email %> </h4>
+	<h1>License Summary:</h1>
+	<h3>"<%= @accepted_license.song.title %>" - <%= @accepted_license.song.artist.name %></h3>
+	<% @accepted_license.details.each do |detail| %>
+	<span><strong><%= detail.category %></strong> - <%= detail.selected %></span><br>
+	<% end %>
+	<h3>Price: $<%= @accepted_license.price %></h3>
+	<h4>Licensee: <%= @accepted_license.user.email %> </h4>
 </div>
 <span class="under__pic official"><em><strong>An official license with these terms will be generated and e-mailed to you.</strong></em></span><br><br>
 

@@ -20,12 +20,6 @@ class SessionsController < Devise::SessionsController
 		  @songs = @filterrific.find.page(params[:page]).paginate(:page => params[:page], per_page: 10)
 			render :"stores/index"
 		end
-	    # self.resource = warden.authenticate!(auth_options)
-
-	    # sign_in(resource_name, resource)
-	    # yield resource if block_given?
-	    # respond_with resource, location: "/store"
-	    # binding.pry
 	end
 
 	private
